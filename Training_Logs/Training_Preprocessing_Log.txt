@@ -1,0 +1,14 @@
+2022-10-22/22:25:56		Start performing exploratory data analysis
+2022-10-22/22:25:56		Start reading compiled data from database
+2022-10-22/22:25:56		Finish reading compiled data from database
+2022-10-22/22:26:22		Finish performing exploratory data analysis
+2022-10-22/22:27:12		Start of data preprocessing
+2022-10-22/22:27:12		Start reading compiled data from database
+2022-10-22/22:27:12		Finish reading compiled data from database
+2022-10-22/22:27:12		Start removing irrelevant columns from the dataset
+2022-10-22/22:27:13		Finish removing irrelevant columns from the dataset
+2022-10-22/22:27:13		Start handling duplicated rows in the dataset
+2022-10-22/22:27:13		Finish handling duplicated rows in the dataset
+2022-10-22/22:27:13		Start separating the data into features and labels
+2022-10-22/22:27:13		Finish separating the data into features and labels
+2022-10-22/22:27:13		End of data preprocessing

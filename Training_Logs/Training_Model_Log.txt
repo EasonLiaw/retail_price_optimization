@@ -1,0 +1,481 @@
+2022-10-23/16:44:42		Start process of model selection
+2022-10-23/16:44:42		Start hyperparameter tuning for HuberRegressor for fold 1
+2022-10-23/16:53:01		Hyperparameter tuning for HuberRegressor completed for fold 1
+2022-10-23/16:53:01		Start using best pipeline for HuberRegressor for transforming training and validation data for fold 1
+2022-10-23/16:53:17		Finish using best pipeline for HuberRegressor for transforming training and validation data for fold 1
+2022-10-23/16:53:17		Start evaluating model performance for HuberRegressor on validation set for fold 1
+2022-10-23/16:53:17		Evaluating model performance for HuberRegressor on validation set completed for fold 1
+2022-10-23/16:53:17		Optimized results for HuberRegressor model saved for fold 1
+2022-10-23/16:53:27		Start hyperparameter tuning for HuberRegressor for fold 2
+2022-10-23/17:03:04		Hyperparameter tuning for HuberRegressor completed for fold 2
+2022-10-23/17:03:04		Start using best pipeline for HuberRegressor for transforming training and validation data for fold 2
+2022-10-23/17:03:42		Finish using best pipeline for HuberRegressor for transforming training and validation data for fold 2
+2022-10-23/17:03:42		Start evaluating model performance for HuberRegressor on validation set for fold 2
+2022-10-23/17:03:42		Evaluating model performance for HuberRegressor on validation set completed for fold 2
+2022-10-23/17:03:42		Optimized results for HuberRegressor model saved for fold 2
+2022-10-23/17:03:52		Start hyperparameter tuning for HuberRegressor for fold 3
+2022-10-23/17:11:57		Hyperparameter tuning for HuberRegressor completed for fold 3
+2022-10-23/17:11:57		Start using best pipeline for HuberRegressor for transforming training and validation data for fold 3
+2022-10-23/17:12:11		Finish using best pipeline for HuberRegressor for transforming training and validation data for fold 3
+2022-10-23/17:12:11		Start evaluating model performance for HuberRegressor on validation set for fold 3
+2022-10-23/17:12:12		Evaluating model performance for HuberRegressor on validation set completed for fold 3
+2022-10-23/17:12:12		Optimized results for HuberRegressor model saved for fold 3
+2022-10-23/17:12:22		Start hyperparameter tuning for HuberRegressor for fold 4
+2022-10-23/17:21:07		Hyperparameter tuning for HuberRegressor completed for fold 4
+2022-10-23/17:21:07		Start using best pipeline for HuberRegressor for transforming training and validation data for fold 4
+2022-10-23/17:21:22		Finish using best pipeline for HuberRegressor for transforming training and validation data for fold 4
+2022-10-23/17:21:22		Start evaluating model performance for HuberRegressor on validation set for fold 4
+2022-10-23/17:21:22		Evaluating model performance for HuberRegressor on validation set completed for fold 4
+2022-10-23/17:21:22		Optimized results for HuberRegressor model saved for fold 4
+2022-10-23/17:21:32		Start hyperparameter tuning for HuberRegressor for fold 5
+2022-10-23/17:29:43		Hyperparameter tuning for HuberRegressor completed for fold 5
+2022-10-23/17:29:43		Start using best pipeline for HuberRegressor for transforming training and validation data for fold 5
+2022-10-23/17:29:58		Finish using best pipeline for HuberRegressor for transforming training and validation data for fold 5
+2022-10-23/17:29:58		Start evaluating model performance for HuberRegressor on validation set for fold 5
+2022-10-23/17:29:58		Evaluating model performance for HuberRegressor on validation set completed for fold 5
+2022-10-23/17:29:58		Optimized results for HuberRegressor model saved for fold 5
+2022-10-23/17:30:09		Average optimized results for HuberRegressor model saved
+2022-10-23/17:45:30		Start hyperparameter tuning for Ridge for fold 1
+2022-10-23/17:48:25		Hyperparameter tuning for Ridge completed for fold 1
+2022-10-23/17:48:25		Start using best pipeline for Ridge for transforming training and validation data for fold 1
+2022-10-23/17:48:31		Finish using best pipeline for Ridge for transforming training and validation data for fold 1
+2022-10-23/17:48:31		Start evaluating model performance for Ridge on validation set for fold 1
+2022-10-23/17:48:31		Evaluating model performance for Ridge on validation set completed for fold 1
+2022-10-23/17:48:31		Optimized results for Ridge model saved for fold 1
+2022-10-23/17:48:41		Start hyperparameter tuning for Ridge for fold 2
+2022-10-23/17:57:45		Hyperparameter tuning for Ridge completed for fold 2
+2022-10-23/17:57:45		Start using best pipeline for Ridge for transforming training and validation data for fold 2
+2022-10-23/17:57:51		Finish using best pipeline for Ridge for transforming training and validation data for fold 2
+2022-10-23/17:57:51		Start evaluating model performance for Ridge on validation set for fold 2
+2022-10-23/17:57:51		Evaluating model performance for Ridge on validation set completed for fold 2
+2022-10-23/17:57:51		Optimized results for Ridge model saved for fold 2
+2022-10-23/17:58:01		Start hyperparameter tuning for Ridge for fold 3
+2022-10-23/18:07:07		Hyperparameter tuning for Ridge completed for fold 3
+2022-10-23/18:07:07		Start using best pipeline for Ridge for transforming training and validation data for fold 3
+2022-10-23/18:07:13		Finish using best pipeline for Ridge for transforming training and validation data for fold 3
+2022-10-23/18:07:13		Start evaluating model performance for Ridge on validation set for fold 3
+2022-10-23/18:07:13		Evaluating model performance for Ridge on validation set completed for fold 3
+2022-10-23/18:07:13		Optimized results for Ridge model saved for fold 3
+2022-10-23/18:07:23		Start hyperparameter tuning for Ridge for fold 4
+2022-10-23/18:16:40		Hyperparameter tuning for Ridge completed for fold 4
+2022-10-23/18:16:40		Start using best pipeline for Ridge for transforming training and validation data for fold 4
+2022-10-23/18:16:46		Finish using best pipeline for Ridge for transforming training and validation data for fold 4
+2022-10-23/18:16:46		Start evaluating model performance for Ridge on validation set for fold 4
+2022-10-23/18:16:46		Evaluating model performance for Ridge on validation set completed for fold 4
+2022-10-23/18:16:47		Optimized results for Ridge model saved for fold 4
+2022-10-23/18:16:57		Start hyperparameter tuning for Ridge for fold 5
+2022-10-23/18:25:56		Hyperparameter tuning for Ridge completed for fold 5
+2022-10-23/18:25:56		Start using best pipeline for Ridge for transforming training and validation data for fold 5
+2022-10-23/18:26:03		Finish using best pipeline for Ridge for transforming training and validation data for fold 5
+2022-10-23/18:26:03		Start evaluating model performance for Ridge on validation set for fold 5
+2022-10-23/18:26:03		Evaluating model performance for Ridge on validation set completed for fold 5
+2022-10-23/18:26:03		Optimized results for Ridge model saved for fold 5
+2022-10-23/18:26:13		Average optimized results for Ridge model saved
+2022-10-23/18:26:23		Start hyperparameter tuning for Lasso for fold 1
+2022-10-23/18:45:36		Hyperparameter tuning for Lasso completed for fold 1
+2022-10-23/18:45:36		Start using best pipeline for Lasso for transforming training and validation data for fold 1
+2022-10-23/18:45:41		Finish using best pipeline for Lasso for transforming training and validation data for fold 1
+2022-10-23/18:45:41		Start evaluating model performance for Lasso on validation set for fold 1
+2022-10-23/18:45:42		Evaluating model performance for Lasso on validation set completed for fold 1
+2022-10-23/18:45:42		Optimized results for Lasso model saved for fold 1
+2022-10-23/18:45:52		Start hyperparameter tuning for Lasso for fold 2
+2022-10-23/19:04:49		Hyperparameter tuning for Lasso completed for fold 2
+2022-10-23/19:04:49		Start using best pipeline for Lasso for transforming training and validation data for fold 2
+2022-10-23/19:04:54		Finish using best pipeline for Lasso for transforming training and validation data for fold 2
+2022-10-23/19:04:54		Start evaluating model performance for Lasso on validation set for fold 2
+2022-10-23/19:04:56		Evaluating model performance for Lasso on validation set completed for fold 2
+2022-10-23/19:04:56		Optimized results for Lasso model saved for fold 2
+2022-10-23/19:05:06		Start hyperparameter tuning for Lasso for fold 3
+2022-10-23/19:24:01		Hyperparameter tuning for Lasso completed for fold 3
+2022-10-23/19:24:01		Start using best pipeline for Lasso for transforming training and validation data for fold 3
+2022-10-23/19:24:06		Finish using best pipeline for Lasso for transforming training and validation data for fold 3
+2022-10-23/19:24:06		Start evaluating model performance for Lasso on validation set for fold 3
+2022-10-23/19:24:08		Evaluating model performance for Lasso on validation set completed for fold 3
+2022-10-23/19:24:08		Optimized results for Lasso model saved for fold 3
+2022-10-23/19:24:18		Start hyperparameter tuning for Lasso for fold 4
+2022-10-23/19:42:16		Hyperparameter tuning for Lasso completed for fold 4
+2022-10-23/19:42:16		Start using best pipeline for Lasso for transforming training and validation data for fold 4
+2022-10-23/19:42:21		Finish using best pipeline for Lasso for transforming training and validation data for fold 4
+2022-10-23/19:42:21		Start evaluating model performance for Lasso on validation set for fold 4
+2022-10-23/19:42:23		Evaluating model performance for Lasso on validation set completed for fold 4
+2022-10-23/19:42:23		Optimized results for Lasso model saved for fold 4
+2022-10-23/19:42:33		Start hyperparameter tuning for Lasso for fold 5
+2022-10-23/20:02:39		Hyperparameter tuning for Lasso completed for fold 5
+2022-10-23/20:02:39		Start using best pipeline for Lasso for transforming training and validation data for fold 5
+2022-10-23/20:02:44		Finish using best pipeline for Lasso for transforming training and validation data for fold 5
+2022-10-23/20:02:44		Start evaluating model performance for Lasso on validation set for fold 5
+2022-10-23/20:02:45		Evaluating model performance for Lasso on validation set completed for fold 5
+2022-10-23/20:02:45		Optimized results for Lasso model saved for fold 5
+2022-10-23/20:02:56		Average optimized results for Lasso model saved
+2022-10-23/20:05:14		Start hyperparameter tuning for ElasticNet for fold 1
+2022-10-23/20:42:52		Hyperparameter tuning for ElasticNet completed for fold 1
+2022-10-23/20:42:52		Start using best pipeline for ElasticNet for transforming training and validation data for fold 1
+2022-10-23/20:42:58		Finish using best pipeline for ElasticNet for transforming training and validation data for fold 1
+2022-10-23/20:42:58		Start evaluating model performance for ElasticNet on validation set for fold 1
+2022-10-23/20:44:01		Evaluating model performance for ElasticNet on validation set completed for fold 1
+2022-10-23/20:44:01		Optimized results for ElasticNet model saved for fold 1
+2022-10-23/20:44:11		Start hyperparameter tuning for ElasticNet for fold 2
+2022-10-23/21:20:24		Hyperparameter tuning for ElasticNet completed for fold 2
+2022-10-23/21:20:24		Start using best pipeline for ElasticNet for transforming training and validation data for fold 2
+2022-10-23/21:20:52		Finish using best pipeline for ElasticNet for transforming training and validation data for fold 2
+2022-10-23/21:20:52		Start evaluating model performance for ElasticNet on validation set for fold 2
+2022-10-23/21:21:43		Evaluating model performance for ElasticNet on validation set completed for fold 2
+2022-10-23/21:21:43		Optimized results for ElasticNet model saved for fold 2
+2022-10-23/21:21:53		Start hyperparameter tuning for ElasticNet for fold 3
+2022-10-23/21:59:25		Hyperparameter tuning for ElasticNet completed for fold 3
+2022-10-23/21:59:25		Start using best pipeline for ElasticNet for transforming training and validation data for fold 3
+2022-10-23/21:59:41		Finish using best pipeline for ElasticNet for transforming training and validation data for fold 3
+2022-10-23/21:59:41		Start evaluating model performance for ElasticNet on validation set for fold 3
+2022-10-23/22:00:42		Evaluating model performance for ElasticNet on validation set completed for fold 3
+2022-10-23/22:00:42		Optimized results for ElasticNet model saved for fold 3
+2022-10-23/22:00:52		Start hyperparameter tuning for ElasticNet for fold 4
+2022-10-23/22:32:25		Hyperparameter tuning for ElasticNet completed for fold 4
+2022-10-23/22:32:25		Start using best pipeline for ElasticNet for transforming training and validation data for fold 4
+2022-10-23/22:32:33		Finish using best pipeline for ElasticNet for transforming training and validation data for fold 4
+2022-10-23/22:32:33		Start evaluating model performance for ElasticNet on validation set for fold 4
+2022-10-23/22:33:25		Evaluating model performance for ElasticNet on validation set completed for fold 4
+2022-10-23/22:33:25		Optimized results for ElasticNet model saved for fold 4
+2022-10-23/22:33:35		Start hyperparameter tuning for ElasticNet for fold 5
+2022-10-23/23:09:00		Hyperparameter tuning for ElasticNet completed for fold 5
+2022-10-23/23:09:00		Start using best pipeline for ElasticNet for transforming training and validation data for fold 5
+2022-10-23/23:09:30		Finish using best pipeline for ElasticNet for transforming training and validation data for fold 5
+2022-10-23/23:09:30		Start evaluating model performance for ElasticNet on validation set for fold 5
+2022-10-23/23:10:22		Evaluating model performance for ElasticNet on validation set completed for fold 5
+2022-10-23/23:10:22		Optimized results for ElasticNet model saved for fold 5
+2022-10-23/23:10:33		Average optimized results for ElasticNet model saved
+2022-10-24/08:39:02		Start hyperparameter tuning for LinearSVR for fold 1
+2022-10-24/08:48:25		Hyperparameter tuning for LinearSVR completed for fold 1
+2022-10-24/08:48:25		Start using best pipeline for LinearSVR for transforming training and validation data for fold 1
+2022-10-24/08:48:36		Finish using best pipeline for LinearSVR for transforming training and validation data for fold 1
+2022-10-24/08:48:36		Start evaluating model performance for LinearSVR on validation set for fold 1
+2022-10-24/08:48:36		Evaluating model performance for LinearSVR on validation set completed for fold 1
+2022-10-24/08:48:36		Optimized results for LinearSVR model saved for fold 1
+2022-10-24/08:48:46		Start hyperparameter tuning for LinearSVR for fold 2
+2022-10-24/08:57:43		Hyperparameter tuning for LinearSVR completed for fold 2
+2022-10-24/08:57:43		Start using best pipeline for LinearSVR for transforming training and validation data for fold 2
+2022-10-24/08:58:05		Finish using best pipeline for LinearSVR for transforming training and validation data for fold 2
+2022-10-24/08:58:05		Start evaluating model performance for LinearSVR on validation set for fold 2
+2022-10-24/08:58:05		Evaluating model performance for LinearSVR on validation set completed for fold 2
+2022-10-24/08:58:05		Optimized results for LinearSVR model saved for fold 2
+2022-10-24/08:58:15		Start hyperparameter tuning for LinearSVR for fold 3
+2022-10-24/09:06:28		Hyperparameter tuning for LinearSVR completed for fold 3
+2022-10-24/09:06:28		Start using best pipeline for LinearSVR for transforming training and validation data for fold 3
+2022-10-24/09:06:50		Finish using best pipeline for LinearSVR for transforming training and validation data for fold 3
+2022-10-24/09:06:50		Start evaluating model performance for LinearSVR on validation set for fold 3
+2022-10-24/09:06:50		Evaluating model performance for LinearSVR on validation set completed for fold 3
+2022-10-24/09:06:50		Optimized results for LinearSVR model saved for fold 3
+2022-10-24/09:07:00		Start hyperparameter tuning for LinearSVR for fold 4
+2022-10-24/09:15:53		Hyperparameter tuning for LinearSVR completed for fold 4
+2022-10-24/09:15:53		Start using best pipeline for LinearSVR for transforming training and validation data for fold 4
+2022-10-24/09:16:14		Finish using best pipeline for LinearSVR for transforming training and validation data for fold 4
+2022-10-24/09:16:14		Start evaluating model performance for LinearSVR on validation set for fold 4
+2022-10-24/09:16:14		Evaluating model performance for LinearSVR on validation set completed for fold 4
+2022-10-24/09:16:14		Optimized results for LinearSVR model saved for fold 4
+2022-10-24/09:16:24		Start hyperparameter tuning for LinearSVR for fold 5
+2022-10-24/09:23:34		Hyperparameter tuning for LinearSVR completed for fold 5
+2022-10-24/09:23:34		Start using best pipeline for LinearSVR for transforming training and validation data for fold 5
+2022-10-24/09:23:44		Finish using best pipeline for LinearSVR for transforming training and validation data for fold 5
+2022-10-24/09:23:44		Start evaluating model performance for LinearSVR on validation set for fold 5
+2022-10-24/09:23:44		Evaluating model performance for LinearSVR on validation set completed for fold 5
+2022-10-24/09:23:44		Optimized results for LinearSVR model saved for fold 5
+2022-10-24/09:23:54		Average optimized results for LinearSVR model saved
+2022-10-24/11:07:49		Start hyperparameter tuning for DecisionTreeRegressor for fold 1
+2022-10-24/11:16:02		Hyperparameter tuning for DecisionTreeRegressor completed for fold 1
+2022-10-24/11:16:02		Start using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 1
+2022-10-24/11:16:06		Finish using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 1
+2022-10-24/11:16:06		Start evaluating model performance for DecisionTreeRegressor on validation set for fold 1
+2022-10-24/11:16:09		Evaluating model performance for DecisionTreeRegressor on validation set completed for fold 1
+2022-10-24/11:16:09		Optimized results for DecisionTreeRegressor model saved for fold 1
+2022-10-24/11:16:19		Start hyperparameter tuning for DecisionTreeRegressor for fold 2
+2022-10-24/11:27:22		Hyperparameter tuning for DecisionTreeRegressor completed for fold 2
+2022-10-24/11:27:22		Start using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 2
+2022-10-24/11:27:36		Finish using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 2
+2022-10-24/11:27:36		Start evaluating model performance for DecisionTreeRegressor on validation set for fold 2
+2022-10-24/11:27:40		Evaluating model performance for DecisionTreeRegressor on validation set completed for fold 2
+2022-10-24/11:27:40		Optimized results for DecisionTreeRegressor model saved for fold 2
+2022-10-24/11:27:50		Start hyperparameter tuning for DecisionTreeRegressor for fold 3
+2022-10-24/11:37:30		Hyperparameter tuning for DecisionTreeRegressor completed for fold 3
+2022-10-24/11:37:30		Start using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 3
+2022-10-24/11:37:44		Finish using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 3
+2022-10-24/11:37:44		Start evaluating model performance for DecisionTreeRegressor on validation set for fold 3
+2022-10-24/11:37:46		Evaluating model performance for DecisionTreeRegressor on validation set completed for fold 3
+2022-10-24/11:37:46		Optimized results for DecisionTreeRegressor model saved for fold 3
+2022-10-24/11:37:56		Start hyperparameter tuning for DecisionTreeRegressor for fold 4
+2022-10-24/11:49:01		Hyperparameter tuning for DecisionTreeRegressor completed for fold 4
+2022-10-24/11:49:01		Start using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 4
+2022-10-24/11:49:06		Finish using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 4
+2022-10-24/11:49:06		Start evaluating model performance for DecisionTreeRegressor on validation set for fold 4
+2022-10-24/11:49:08		Evaluating model performance for DecisionTreeRegressor on validation set completed for fold 4
+2022-10-24/11:49:08		Optimized results for DecisionTreeRegressor model saved for fold 4
+2022-10-24/11:49:18		Start hyperparameter tuning for DecisionTreeRegressor for fold 5
+2022-10-24/12:00:08		Hyperparameter tuning for DecisionTreeRegressor completed for fold 5
+2022-10-24/12:00:08		Start using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 5
+2022-10-24/12:00:34		Finish using best pipeline for DecisionTreeRegressor for transforming training and validation data for fold 5
+2022-10-24/12:00:34		Start evaluating model performance for DecisionTreeRegressor on validation set for fold 5
+2022-10-24/12:00:36		Evaluating model performance for DecisionTreeRegressor on validation set completed for fold 5
+2022-10-24/12:00:36		Optimized results for DecisionTreeRegressor model saved for fold 5
+2022-10-24/12:00:46		Average optimized results for DecisionTreeRegressor model saved
+2022-10-24/14:07:16		Start hyperparameter tuning for RandomForestRegressor for fold 1
+2022-10-24/14:17:54		Hyperparameter tuning for RandomForestRegressor completed for fold 1
+2022-10-24/14:17:54		Start using best pipeline for RandomForestRegressor for transforming training and validation data for fold 1
+2022-10-24/14:18:03		Finish using best pipeline for RandomForestRegressor for transforming training and validation data for fold 1
+2022-10-24/14:18:03		Start evaluating model performance for RandomForestRegressor on validation set for fold 1
+2022-10-24/14:18:06		Evaluating model performance for RandomForestRegressor on validation set completed for fold 1
+2022-10-24/14:18:06		Optimized results for RandomForestRegressor model saved for fold 1
+2022-10-24/14:18:16		Start hyperparameter tuning for RandomForestRegressor for fold 2
+2022-10-24/14:28:47		Hyperparameter tuning for RandomForestRegressor completed for fold 2
+2022-10-24/14:28:47		Start using best pipeline for RandomForestRegressor for transforming training and validation data for fold 2
+2022-10-24/14:29:00		Finish using best pipeline for RandomForestRegressor for transforming training and validation data for fold 2
+2022-10-24/14:29:01		Start evaluating model performance for RandomForestRegressor on validation set for fold 2
+2022-10-24/14:29:06		Evaluating model performance for RandomForestRegressor on validation set completed for fold 2
+2022-10-24/14:29:06		Optimized results for RandomForestRegressor model saved for fold 2
+2022-10-24/14:29:16		Start hyperparameter tuning for RandomForestRegressor for fold 3
+2022-10-24/14:40:57		Hyperparameter tuning for RandomForestRegressor completed for fold 3
+2022-10-24/14:40:57		Start using best pipeline for RandomForestRegressor for transforming training and validation data for fold 3
+2022-10-24/14:41:11		Finish using best pipeline for RandomForestRegressor for transforming training and validation data for fold 3
+2022-10-24/14:41:11		Start evaluating model performance for RandomForestRegressor on validation set for fold 3
+2022-10-24/14:41:15		Evaluating model performance for RandomForestRegressor on validation set completed for fold 3
+2022-10-24/14:41:15		Optimized results for RandomForestRegressor model saved for fold 3
+2022-10-24/14:41:25		Start hyperparameter tuning for RandomForestRegressor for fold 4
+2022-10-24/14:53:03		Hyperparameter tuning for RandomForestRegressor completed for fold 4
+2022-10-24/14:53:03		Start using best pipeline for RandomForestRegressor for transforming training and validation data for fold 4
+2022-10-24/14:53:12		Finish using best pipeline for RandomForestRegressor for transforming training and validation data for fold 4
+2022-10-24/14:53:12		Start evaluating model performance for RandomForestRegressor on validation set for fold 4
+2022-10-24/14:53:19		Evaluating model performance for RandomForestRegressor on validation set completed for fold 4
+2022-10-24/14:53:19		Optimized results for RandomForestRegressor model saved for fold 4
+2022-10-24/14:53:29		Start hyperparameter tuning for RandomForestRegressor for fold 5
+2022-10-24/15:03:22		Hyperparameter tuning for RandomForestRegressor completed for fold 5
+2022-10-24/15:03:22		Start using best pipeline for RandomForestRegressor for transforming training and validation data for fold 5
+2022-10-24/15:03:25		Finish using best pipeline for RandomForestRegressor for transforming training and validation data for fold 5
+2022-10-24/15:03:25		Start evaluating model performance for RandomForestRegressor on validation set for fold 5
+2022-10-24/15:03:27		Evaluating model performance for RandomForestRegressor on validation set completed for fold 5
+2022-10-24/15:03:27		Optimized results for RandomForestRegressor model saved for fold 5
+2022-10-24/15:03:38		Average optimized results for RandomForestRegressor model saved
+2022-10-24/15:04:34		Start hyperparameter tuning for ExtraTreesRegressor for fold 1
+2022-10-24/15:13:23		Hyperparameter tuning for ExtraTreesRegressor completed for fold 1
+2022-10-24/15:13:23		Start using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 1
+2022-10-24/15:13:29		Finish using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 1
+2022-10-24/15:13:29		Start evaluating model performance for ExtraTreesRegressor on validation set for fold 1
+2022-10-24/15:13:30		Evaluating model performance for ExtraTreesRegressor on validation set completed for fold 1
+2022-10-24/15:13:30		Optimized results for ExtraTreesRegressor model saved for fold 1
+2022-10-24/15:13:40		Start hyperparameter tuning for ExtraTreesRegressor for fold 2
+2022-10-24/15:23:36		Hyperparameter tuning for ExtraTreesRegressor completed for fold 2
+2022-10-24/15:23:36		Start using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 2
+2022-10-24/15:23:49		Finish using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 2
+2022-10-24/15:23:49		Start evaluating model performance for ExtraTreesRegressor on validation set for fold 2
+2022-10-24/15:23:50		Evaluating model performance for ExtraTreesRegressor on validation set completed for fold 2
+2022-10-24/15:23:50		Optimized results for ExtraTreesRegressor model saved for fold 2
+2022-10-24/15:24:00		Start hyperparameter tuning for ExtraTreesRegressor for fold 3
+2022-10-24/15:34:00		Hyperparameter tuning for ExtraTreesRegressor completed for fold 3
+2022-10-24/15:34:00		Start using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 3
+2022-10-24/15:34:13		Finish using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 3
+2022-10-24/15:34:13		Start evaluating model performance for ExtraTreesRegressor on validation set for fold 3
+2022-10-24/15:34:15		Evaluating model performance for ExtraTreesRegressor on validation set completed for fold 3
+2022-10-24/15:34:15		Optimized results for ExtraTreesRegressor model saved for fold 3
+2022-10-24/15:34:25		Start hyperparameter tuning for ExtraTreesRegressor for fold 4
+2022-10-24/15:44:04		Hyperparameter tuning for ExtraTreesRegressor completed for fold 4
+2022-10-24/15:44:04		Start using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 4
+2022-10-24/15:44:11		Finish using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 4
+2022-10-24/15:44:11		Start evaluating model performance for ExtraTreesRegressor on validation set for fold 4
+2022-10-24/15:44:12		Evaluating model performance for ExtraTreesRegressor on validation set completed for fold 4
+2022-10-24/15:44:12		Optimized results for ExtraTreesRegressor model saved for fold 4
+2022-10-24/15:44:22		Start hyperparameter tuning for ExtraTreesRegressor for fold 5
+2022-10-24/15:54:11		Hyperparameter tuning for ExtraTreesRegressor completed for fold 5
+2022-10-24/15:54:11		Start using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 5
+2022-10-24/15:54:17		Finish using best pipeline for ExtraTreesRegressor for transforming training and validation data for fold 5
+2022-10-24/15:54:17		Start evaluating model performance for ExtraTreesRegressor on validation set for fold 5
+2022-10-24/15:54:18		Evaluating model performance for ExtraTreesRegressor on validation set completed for fold 5
+2022-10-24/15:54:19		Optimized results for ExtraTreesRegressor model saved for fold 5
+2022-10-24/15:54:29		Average optimized results for ExtraTreesRegressor model saved
+2022-10-24/15:56:24		Start hyperparameter tuning for AdaBoostRegressor for fold 1
+2022-10-24/16:06:02		Hyperparameter tuning for AdaBoostRegressor completed for fold 1
+2022-10-24/16:06:02		Start using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 1
+2022-10-24/16:06:14		Finish using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 1
+2022-10-24/16:06:14		Start evaluating model performance for AdaBoostRegressor on validation set for fold 1
+2022-10-24/16:06:17		Evaluating model performance for AdaBoostRegressor on validation set completed for fold 1
+2022-10-24/16:06:17		Optimized results for AdaBoostRegressor model saved for fold 1
+2022-10-24/16:06:27		Start hyperparameter tuning for AdaBoostRegressor for fold 2
+2022-10-24/16:15:29		Hyperparameter tuning for AdaBoostRegressor completed for fold 2
+2022-10-24/16:15:29		Start using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 2
+2022-10-24/16:15:36		Finish using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 2
+2022-10-24/16:15:36		Start evaluating model performance for AdaBoostRegressor on validation set for fold 2
+2022-10-24/16:15:39		Evaluating model performance for AdaBoostRegressor on validation set completed for fold 2
+2022-10-24/16:15:39		Optimized results for AdaBoostRegressor model saved for fold 2
+2022-10-24/16:15:49		Start hyperparameter tuning for AdaBoostRegressor for fold 3
+2022-10-24/16:24:43		Hyperparameter tuning for AdaBoostRegressor completed for fold 3
+2022-10-24/16:24:43		Start using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 3
+2022-10-24/16:24:50		Finish using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 3
+2022-10-24/16:24:50		Start evaluating model performance for AdaBoostRegressor on validation set for fold 3
+2022-10-24/16:24:53		Evaluating model performance for AdaBoostRegressor on validation set completed for fold 3
+2022-10-24/16:24:53		Optimized results for AdaBoostRegressor model saved for fold 3
+2022-10-24/16:25:03		Start hyperparameter tuning for AdaBoostRegressor for fold 4
+2022-10-24/16:33:43		Hyperparameter tuning for AdaBoostRegressor completed for fold 4
+2022-10-24/16:33:43		Start using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 4
+2022-10-24/16:33:53		Finish using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 4
+2022-10-24/16:33:53		Start evaluating model performance for AdaBoostRegressor on validation set for fold 4
+2022-10-24/16:33:57		Evaluating model performance for AdaBoostRegressor on validation set completed for fold 4
+2022-10-24/16:33:57		Optimized results for AdaBoostRegressor model saved for fold 4
+2022-10-24/16:34:07		Start hyperparameter tuning for AdaBoostRegressor for fold 5
+2022-10-24/16:43:16		Hyperparameter tuning for AdaBoostRegressor completed for fold 5
+2022-10-24/16:43:16		Start using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 5
+2022-10-24/16:43:28		Finish using best pipeline for AdaBoostRegressor for transforming training and validation data for fold 5
+2022-10-24/16:43:28		Start evaluating model performance for AdaBoostRegressor on validation set for fold 5
+2022-10-24/16:43:31		Evaluating model performance for AdaBoostRegressor on validation set completed for fold 5
+2022-10-24/16:43:31		Optimized results for AdaBoostRegressor model saved for fold 5
+2022-10-24/16:43:41		Average optimized results for AdaBoostRegressor model saved
+2022-10-24/16:43:51		Start hyperparameter tuning for HistGradientBoostingRegressor for fold 1
+2022-10-24/16:55:03		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold 1
+2022-10-24/16:55:03		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 1
+2022-10-24/16:55:26		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 1
+2022-10-24/16:55:26		Start evaluating model performance for HistGradientBoostingRegressor on validation set for fold 1
+2022-10-24/16:55:26		Evaluating model performance for HistGradientBoostingRegressor on validation set completed for fold 1
+2022-10-24/16:55:26		Optimized results for HistGradientBoostingRegressor model saved for fold 1
+2022-10-24/16:55:37		Start hyperparameter tuning for HistGradientBoostingRegressor for fold 2
+2022-10-24/17:04:39		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold 2
+2022-10-24/17:04:39		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 2
+2022-10-24/17:04:49		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 2
+2022-10-24/17:04:49		Start evaluating model performance for HistGradientBoostingRegressor on validation set for fold 2
+2022-10-24/17:04:50		Evaluating model performance for HistGradientBoostingRegressor on validation set completed for fold 2
+2022-10-24/17:04:50		Optimized results for HistGradientBoostingRegressor model saved for fold 2
+2022-10-24/17:05:00		Start hyperparameter tuning for HistGradientBoostingRegressor for fold 3
+2022-10-24/17:15:23		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold 3
+2022-10-24/17:15:23		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 3
+2022-10-24/17:15:46		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 3
+2022-10-24/17:15:46		Start evaluating model performance for HistGradientBoostingRegressor on validation set for fold 3
+2022-10-24/17:15:46		Evaluating model performance for HistGradientBoostingRegressor on validation set completed for fold 3
+2022-10-24/17:15:46		Optimized results for HistGradientBoostingRegressor model saved for fold 3
+2022-10-24/17:15:56		Start hyperparameter tuning for HistGradientBoostingRegressor for fold 4
+2022-10-24/17:28:58		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold 4
+2022-10-24/17:28:58		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 4
+2022-10-24/17:29:25		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 4
+2022-10-24/17:29:25		Start evaluating model performance for HistGradientBoostingRegressor on validation set for fold 4
+2022-10-24/17:29:25		Evaluating model performance for HistGradientBoostingRegressor on validation set completed for fold 4
+2022-10-24/17:29:25		Optimized results for HistGradientBoostingRegressor model saved for fold 4
+2022-10-24/17:29:35		Start hyperparameter tuning for HistGradientBoostingRegressor for fold 5
+2022-10-24/17:42:45		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold 5
+2022-10-24/17:42:45		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 5
+2022-10-24/17:43:08		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold 5
+2022-10-24/17:43:08		Start evaluating model performance for HistGradientBoostingRegressor on validation set for fold 5
+2022-10-24/17:43:09		Evaluating model performance for HistGradientBoostingRegressor on validation set completed for fold 5
+2022-10-24/17:43:09		Optimized results for HistGradientBoostingRegressor model saved for fold 5
+2022-10-24/17:43:20		Average optimized results for HistGradientBoostingRegressor model saved
+2022-10-24/17:48:55		Start hyperparameter tuning for XGBRegressor for fold 1
+2022-10-24/17:57:27		Hyperparameter tuning for XGBRegressor completed for fold 1
+2022-10-24/17:57:27		Start using best pipeline for XGBRegressor for transforming training and validation data for fold 1
+2022-10-24/17:57:42		Finish using best pipeline for XGBRegressor for transforming training and validation data for fold 1
+2022-10-24/17:57:42		Start evaluating model performance for XGBRegressor on validation set for fold 1
+2022-10-24/17:57:43		Evaluating model performance for XGBRegressor on validation set completed for fold 1
+2022-10-24/17:57:43		Optimized results for XGBRegressor model saved for fold 1
+2022-10-24/17:57:53		Start hyperparameter tuning for XGBRegressor for fold 2
+2022-10-24/18:05:18		Hyperparameter tuning for XGBRegressor completed for fold 2
+2022-10-24/18:05:18		Start using best pipeline for XGBRegressor for transforming training and validation data for fold 2
+2022-10-24/18:05:22		Finish using best pipeline for XGBRegressor for transforming training and validation data for fold 2
+2022-10-24/18:05:23		Start evaluating model performance for XGBRegressor on validation set for fold 2
+2022-10-24/18:05:25		Evaluating model performance for XGBRegressor on validation set completed for fold 2
+2022-10-24/18:05:25		Optimized results for XGBRegressor model saved for fold 2
+2022-10-24/18:05:35		Start hyperparameter tuning for XGBRegressor for fold 3
+2022-10-24/18:14:43		Hyperparameter tuning for XGBRegressor completed for fold 3
+2022-10-24/18:14:43		Start using best pipeline for XGBRegressor for transforming training and validation data for fold 3
+2022-10-24/18:14:54		Finish using best pipeline for XGBRegressor for transforming training and validation data for fold 3
+2022-10-24/18:14:54		Start evaluating model performance for XGBRegressor on validation set for fold 3
+2022-10-24/18:14:55		Evaluating model performance for XGBRegressor on validation set completed for fold 3
+2022-10-24/18:14:55		Optimized results for XGBRegressor model saved for fold 3
+2022-10-24/18:15:05		Start hyperparameter tuning for XGBRegressor for fold 4
+2022-10-24/18:22:36		Hyperparameter tuning for XGBRegressor completed for fold 4
+2022-10-24/18:22:36		Start using best pipeline for XGBRegressor for transforming training and validation data for fold 4
+2022-10-24/18:22:39		Finish using best pipeline for XGBRegressor for transforming training and validation data for fold 4
+2022-10-24/18:22:39		Start evaluating model performance for XGBRegressor on validation set for fold 4
+2022-10-24/18:22:40		Evaluating model performance for XGBRegressor on validation set completed for fold 4
+2022-10-24/18:22:40		Optimized results for XGBRegressor model saved for fold 4
+2022-10-24/18:22:50		Start hyperparameter tuning for XGBRegressor for fold 5
+2022-10-24/18:32:26		Hyperparameter tuning for XGBRegressor completed for fold 5
+2022-10-24/18:32:26		Start using best pipeline for XGBRegressor for transforming training and validation data for fold 5
+2022-10-24/18:32:30		Finish using best pipeline for XGBRegressor for transforming training and validation data for fold 5
+2022-10-24/18:32:30		Start evaluating model performance for XGBRegressor on validation set for fold 5
+2022-10-24/18:32:32		Evaluating model performance for XGBRegressor on validation set completed for fold 5
+2022-10-24/18:32:32		Optimized results for XGBRegressor model saved for fold 5
+2022-10-24/18:32:43		Average optimized results for XGBRegressor model saved
+2022-10-24/18:35:21		Start hyperparameter tuning for LGBMRegressor for fold 1
+2022-10-24/18:42:51		Hyperparameter tuning for LGBMRegressor completed for fold 1
+2022-10-24/18:42:51		Start using best pipeline for LGBMRegressor for transforming training and validation data for fold 1
+2022-10-24/18:42:55		Finish using best pipeline for LGBMRegressor for transforming training and validation data for fold 1
+2022-10-24/18:42:55		Start evaluating model performance for LGBMRegressor on validation set for fold 1
+2022-10-24/18:42:58		Evaluating model performance for LGBMRegressor on validation set completed for fold 1
+2022-10-24/18:42:58		Optimized results for LGBMRegressor model saved for fold 1
+2022-10-24/18:43:08		Start hyperparameter tuning for LGBMRegressor for fold 2
+2022-10-24/18:50:22		Hyperparameter tuning for LGBMRegressor completed for fold 2
+2022-10-24/18:50:22		Start using best pipeline for LGBMRegressor for transforming training and validation data for fold 2
+2022-10-24/18:50:28		Finish using best pipeline for LGBMRegressor for transforming training and validation data for fold 2
+2022-10-24/18:50:28		Start evaluating model performance for LGBMRegressor on validation set for fold 2
+2022-10-24/18:50:31		Evaluating model performance for LGBMRegressor on validation set completed for fold 2
+2022-10-24/18:50:31		Optimized results for LGBMRegressor model saved for fold 2
+2022-10-24/18:50:41		Start hyperparameter tuning for LGBMRegressor for fold 3
+2022-10-24/18:58:08		Hyperparameter tuning for LGBMRegressor completed for fold 3
+2022-10-24/18:58:08		Start using best pipeline for LGBMRegressor for transforming training and validation data for fold 3
+2022-10-24/18:58:18		Finish using best pipeline for LGBMRegressor for transforming training and validation data for fold 3
+2022-10-24/18:58:18		Start evaluating model performance for LGBMRegressor on validation set for fold 3
+2022-10-24/18:58:19		Evaluating model performance for LGBMRegressor on validation set completed for fold 3
+2022-10-24/18:58:19		Optimized results for LGBMRegressor model saved for fold 3
+2022-10-24/18:58:29		Start hyperparameter tuning for LGBMRegressor for fold 4
+2022-10-24/19:07:24		Hyperparameter tuning for LGBMRegressor completed for fold 4
+2022-10-24/19:07:24		Start using best pipeline for LGBMRegressor for transforming training and validation data for fold 4
+2022-10-24/19:07:37		Finish using best pipeline for LGBMRegressor for transforming training and validation data for fold 4
+2022-10-24/19:07:37		Start evaluating model performance for LGBMRegressor on validation set for fold 4
+2022-10-24/19:07:39		Evaluating model performance for LGBMRegressor on validation set completed for fold 4
+2022-10-24/19:07:39		Optimized results for LGBMRegressor model saved for fold 4
+2022-10-24/19:07:49		Start hyperparameter tuning for LGBMRegressor for fold 5
+2022-10-24/19:15:15		Hyperparameter tuning for LGBMRegressor completed for fold 5
+2022-10-24/19:15:15		Start using best pipeline for LGBMRegressor for transforming training and validation data for fold 5
+2022-10-24/19:15:23		Finish using best pipeline for LGBMRegressor for transforming training and validation data for fold 5
+2022-10-24/19:15:23		Start evaluating model performance for LGBMRegressor on validation set for fold 5
+2022-10-24/19:15:25		Evaluating model performance for LGBMRegressor on validation set completed for fold 5
+2022-10-24/19:15:25		Optimized results for LGBMRegressor model saved for fold 5
+2022-10-24/19:15:36		Average optimized results for LGBMRegressor model saved
+2022-10-24/19:16:46		Start hyperparameter tuning for CatBoostRegressor for fold 1
+2022-10-24/19:32:38		Hyperparameter tuning for CatBoostRegressor completed for fold 1
+2022-10-24/19:32:38		Start using best pipeline for CatBoostRegressor for transforming training and validation data for fold 1
+2022-10-24/19:33:21		Finish using best pipeline for CatBoostRegressor for transforming training and validation data for fold 1
+2022-10-24/19:33:21		Start evaluating model performance for CatBoostRegressor on validation set for fold 1
+2022-10-24/19:33:22		Evaluating model performance for CatBoostRegressor on validation set completed for fold 1
+2022-10-24/19:33:22		Optimized results for CatBoostRegressor model saved for fold 1
+2022-10-24/19:33:32		Start hyperparameter tuning for CatBoostRegressor for fold 2
+2022-10-24/19:52:49		Hyperparameter tuning for CatBoostRegressor completed for fold 2
+2022-10-24/19:52:49		Start using best pipeline for CatBoostRegressor for transforming training and validation data for fold 2
+2022-10-24/19:53:35		Finish using best pipeline for CatBoostRegressor for transforming training and validation data for fold 2
+2022-10-24/19:53:35		Start evaluating model performance for CatBoostRegressor on validation set for fold 2
+2022-10-24/19:53:36		Evaluating model performance for CatBoostRegressor on validation set completed for fold 2
+2022-10-24/19:53:36		Optimized results for CatBoostRegressor model saved for fold 2
+2022-10-24/19:53:46		Start hyperparameter tuning for CatBoostRegressor for fold 3
+2022-10-24/20:07:36		Hyperparameter tuning for CatBoostRegressor completed for fold 3
+2022-10-24/20:07:36		Start using best pipeline for CatBoostRegressor for transforming training and validation data for fold 3
+2022-10-24/20:07:59		Finish using best pipeline for CatBoostRegressor for transforming training and validation data for fold 3
+2022-10-24/20:07:59		Start evaluating model performance for CatBoostRegressor on validation set for fold 3
+2022-10-24/20:08:00		Evaluating model performance for CatBoostRegressor on validation set completed for fold 3
+2022-10-24/20:08:00		Optimized results for CatBoostRegressor model saved for fold 3
+2022-10-24/20:08:10		Start hyperparameter tuning for CatBoostRegressor for fold 4
+2022-10-24/20:18:47		Hyperparameter tuning for CatBoostRegressor completed for fold 4
+2022-10-24/20:18:47		Start using best pipeline for CatBoostRegressor for transforming training and validation data for fold 4
+2022-10-24/20:18:50		Finish using best pipeline for CatBoostRegressor for transforming training and validation data for fold 4
+2022-10-24/20:18:50		Start evaluating model performance for CatBoostRegressor on validation set for fold 4
+2022-10-24/20:18:51		Evaluating model performance for CatBoostRegressor on validation set completed for fold 4
+2022-10-24/20:18:51		Optimized results for CatBoostRegressor model saved for fold 4
+2022-10-24/20:19:01		Start hyperparameter tuning for CatBoostRegressor for fold 5
+2022-10-24/20:30:04		Hyperparameter tuning for CatBoostRegressor completed for fold 5
+2022-10-24/20:30:04		Start using best pipeline for CatBoostRegressor for transforming training and validation data for fold 5
+2022-10-24/20:30:28		Finish using best pipeline for CatBoostRegressor for transforming training and validation data for fold 5
+2022-10-24/20:30:28		Start evaluating model performance for CatBoostRegressor on validation set for fold 5
+2022-10-24/20:30:28		Evaluating model performance for CatBoostRegressor on validation set completed for fold 5
+2022-10-24/20:30:28		Optimized results for CatBoostRegressor model saved for fold 5
+2022-10-24/20:30:39		Average optimized results for CatBoostRegressor model saved
+2022-10-24/20:30:49		Best model identified based on RMSE is ExtraTreesRegressor with the following test score: 47.1659 (4.8957)
+2022-10-24/20:30:49		Best model identified based on mean absolute error score is HistGradientBoostingRegressor with the following test score: 14.0344 (0.8)
+2022-10-24/20:30:49		Best model identified based on median absolute error score is LGBMRegressor with the following test score: 4.4873 (0.1691)
+2022-10-24/20:30:49		Finish process of model selection2022-10-24/22:25:50		Start performing hyperparameter tuning on best model identified overall: HistGradientBoostingRegressor
+2022-10-24/22:25:50		Start final model training on all data for HistGradientBoostingRegressor
+2022-10-24/22:25:50		Start hyperparameter tuning for HistGradientBoostingRegressor for fold overall
+2022-10-24/22:38:58		Hyperparameter tuning for HistGradientBoostingRegressor completed for fold overall
+2022-10-24/22:38:58		Start using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold overall
+2022-10-24/22:39:41		Finish using best pipeline for HistGradientBoostingRegressor for transforming training and validation data for fold overall
+2022-10-24/22:39:41		Finish hyperparameter tuning for HistGradientBoostingRegressor for fold overall
+2022-10-24/22:40:34		Finish final model training on all data for HistGradientBoostingRegressor
+2022-10-24/22:40:34		Finish performing hyperparameter tuning on best model identified overall: HistGradientBoostingRegressor

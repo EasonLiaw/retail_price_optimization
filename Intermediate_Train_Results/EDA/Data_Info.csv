@@ -1,0 +1,13 @@
+name,non-nulls,type
+NAME,37203,object
+ZONE,37203,object
+Brand,37203,object
+MC,37203,object
+NSU,37203,float64
+Sales at Cost,37203,float64
+Gross Sales,37203,float64
+MRP,37203,float64
+SP,37203,float64
+Fdate_year,37203,object
+Fdate_month,37203,object
+Fdate_quarter,37203,object

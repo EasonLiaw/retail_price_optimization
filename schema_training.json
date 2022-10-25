@@ -1,0 +1,26 @@
+{	
+	"SampleFileName": "price.xlsx",
+	"NumberofColumns" : 20,
+	"ColName": {
+		"UID": "int",
+		"NAME": "varchar(1000)",
+		"ZONE": "varchar(5)",
+		"Brand": "varchar(1000)",
+		"MC": "varchar(100)",
+		"Fdate": "date",
+		"NSU": "float",
+		"NSV": "float",
+		"GST Value": "float",
+		"NSV-GST": "float",
+		"Sales at Cost": "float",
+		"(NSV-GST)-SALES AT COST": "float",
+		"MARGIN%": "float",
+		"Gross Sales": "float",
+		"Gross RGM(P-L)": "float",
+		"Gross Margin %(Q/P*100)": "float",
+		"MRP": "float",
+		"SP": "float",
+		"DIS": "float",
+		"DIS%": "float"
+	}
+}

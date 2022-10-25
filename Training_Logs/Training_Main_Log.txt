@@ -1,0 +1,41 @@
+2022-10-22/17:58:59		Start initial data preparation
+2022-10-22/17:58:59		Start initializing folder structure
+2022-10-22/17:58:59		Folder Training_Data_FromDB/ has been initialized
+2022-10-22/17:58:59		Folder Intermediate_Train_Results/ has been initialized
+2022-10-22/17:58:59		Folder Caching/ has been initialized
+2022-10-22/17:58:59		Folder Saved_Models/ has been initialized
+2022-10-22/17:58:59		Finish initializing folder structure
+2022-10-22/17:58:59		Start loading train schema
+2022-10-22/17:58:59		Finish loading train schema
+2022-10-22/17:58:59		Start creating new table(price) in SQL database (retail_price)
+2022-10-22/17:59:00		price table created with column UID
+2022-10-22/17:59:00		Column NAME added into price table
+2022-10-22/17:59:00		Column ZONE added into price table
+2022-10-22/17:59:00		Column Brand added into price table
+2022-10-22/17:59:01		Column MC added into price table
+2022-10-22/17:59:01		Column Fdate added into price table
+2022-10-22/17:59:01		Column NSU added into price table
+2022-10-22/17:59:01		Column NSV added into price table
+2022-10-22/17:59:01		Column GST Value added into price table
+2022-10-22/17:59:01		Column NSV-GST added into price table
+2022-10-22/17:59:01		Column Sales at Cost added into price table
+2022-10-22/17:59:01		Column (NSV-GST)-SALES AT COST added into price table
+2022-10-22/17:59:01		Column MARGIN% added into price table
+2022-10-22/17:59:01		Column Gross Sales added into price table
+2022-10-22/17:59:01		Column Gross RGM(P-L) added into price table
+2022-10-22/17:59:01		Column Gross Margin %(Q/P*100) added into price table
+2022-10-22/17:59:01		Column MRP added into price table
+2022-10-22/17:59:01		Column SP added into price table
+2022-10-22/17:59:01		Column DIS added into price table
+2022-10-22/17:59:01		Column DIS% added into price table
+2022-10-22/17:59:01		Finish creating new table(price) in SQL database (retail_price)
+2022-10-22/17:59:01		Start inserting new good training data into SQL database
+2022-10-22/17:59:01		Start handling single quotes on characters
+2022-10-22/17:59:01		Finish handling single quotes on characters
+2022-10-22/17:59:01		Start replacing missing values with null keyword
+2022-10-22/17:59:01		Finish replacing missing values with null keyword
+2022-10-22/17:59:31		Price.csv file added into database
+2022-10-22/17:59:31		Finish inserting new good training data into SQL database
+2022-10-22/17:59:31		Start writing compiled good training data into a new CSV file
+2022-10-22/17:59:32		Finish writing compiled good training data into a new CSV file
+2022-10-22/17:59:32		Finish initial data preparation
