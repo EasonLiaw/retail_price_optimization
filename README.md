@@ -1,17 +1,17 @@
-# Mental Health Status Classification Project
+# Retail Price Optimization Project
 
 ## Background
 ---
 
-<img src="https://user-images.githubusercontent.com/34255556/196916971-21406264-79e5-4f70-a418-08c94e4c1b91.png" width="600">
+<img src="https://user-images.githubusercontent.com/34255556/197797026-5ffd63db-835c-40df-9f0f-867d82e5c3d9.png" width="600">
 
-Ever since the start of the pandemic back in 2020, the government expects more lockdowns through the winter to slow down the spread of the virus. One of the concerns raised by the government is the wellbeing of young primary school children since they are removed from their friends and play environments.
+With the COVID-19 pandemic, there has been a signficant boom in the e-commerce industry with more sellers shifting their businesses towards e-commerce platforms. While traditional rule-based methods have been used by retailers in the past to manage price optimization, these methods require manual analysis of customer and market data to ensure prices are aligned with current market conditions. Inevitably, the overall expansion of digitization of retail industry in recent years due to the global pandemic has resulted in a massive increase of sales-related data, such that traditional rule-based methods result in difficulty of continuous monitoring.
 
-For this project, the main goal is to deploy initial classification models that help to monitor a child’s wellbeing status during the pandemic period. By identifying factors that influence the status of a child’s wellbeing through a customized survey, the government will be able to make more informed decisions/new policies that reduce the risk of a child having behavioral or emotional difficulties or both.
+For this project, the main goal is to deploy initial regression models that help to predict retail price for various products. With the help of Machine Learning, retailers will be able to utilize the full potential of their data by effectively setting prices that maximizes their profits without discouraging customers from purchasing their products.
 
-Dataset is provided in .json format by client under Training_Batch_Files folder for model training. (not included in this repository due to data confidentiality reasons)
+Dataset is provided in .csv format by client under Training_Batch_Files folder for model training. (not included in this repository due to data confidentiality reasons) In addition, schema of datasets for model training is provided in .json format by the client for storing csv files into a single PostgreSQL database.
 
-For model prediction, a web API is used (created using StreamLit) for user input. Note that results generated from model prediction along with user inputs can be stored in various formats (i.e. in CSV file format or another database).
+For model prediction, a web API is used (created using StreamLit) for user input and the results generated from model prediction along with user inputs can be stored in various formats (i.e. in CSV file format or another PostgreSQL database).
 
 ## Contents
 - [Code and Resources Used](#code-and-resources-used)
@@ -44,19 +44,18 @@ For model prediction, a web API is used (created using StreamLit) for user input
   - [Encoding "time-related" features](#viii-encoding-time-related-features)  
   - [Feature Scaling](#x-feature-scaling)
   - [Feature Selection](#xi-feature-selection)
-  - [Cluster Feature representation](#xii-cluster-feature-representation)
 - [Legality](#legality)
 
 ## Code and Resources Used
 ---
 - **Python Version** : 3.10.0
-- **Packages** : borutashap, feature-engine, featurewiz, imbalanced-learn, joblib, catboost, lightgbm, matplotlib, pymongo, numpy, optuna, pandas, plotly, scikit-learn, scipy, seaborn, shap, streamlit, tqdm, xgboost, yellowbrick
+- **Packages** : category_encoders, dython, feature-engine, featurewiz, joblib, catboost, lightgbm, matplotlib, psycopg2-binary, numpy, optuna, pandas, plotly, scikit-learn, scipy, seaborn, shap, streamlit, tqdm, xgboost, yellowbrick
 - **Dataset source** : From 360DIGITMG (For confidentiality reasons, dataset is not included here)
-- **Database**: MongoDB Atlas
-- **MongoDB documentation**: https://www.mongodb.com/docs/
+- **Database**: PostgreSQL
+- **PostgreSQL documentation**: https://www.mongodb.com/docs/
 - **Optuna documentation** : https://optuna.readthedocs.io/en/stable/
+- **Category_encoders documentation**: https://contrib.scikit-learn.org/category_encoders/index.html
 - **Feature Engine documentation** : https://feature-engine.readthedocs.io/en/latest/
-- **Imbalanced Learn documentation** : https://imbalanced-learn.org/stable/index.html
 - **Scikit Learn documentation** : https://scikit-learn.org/stable/modules/classes.html
 - **Shap documentation**: https://shap.readthedocs.io/en/latest/index.html
 - **XGBoost documentation**: https://xgboost.readthedocs.io/en/stable/
@@ -74,33 +73,34 @@ For model prediction, a web API is used (created using StreamLit) for user input
 
 ## Model Training Setting
 ---
-For this project, nested cross validation with stratification is used for identifying the best model class to use for model deployment. The inner loop of nested cross validation consists of 3 fold cross validation using Optuna (TPE Multivariate Sampler with 40 trials on optimizing average F1 macro score) for hyperparameter tuning on different training and validation sets, while the outer loop of nested cross validation consists of 5 fold cross validation for model evaluation on different test sets.
+For this project, nested cross validation is used for identifying the best model class to use for model deployment. The inner loop of nested cross validation consists of 3 fold cross validation using Optuna (TPE Multivariate Sampler with 20 trials on optimizing root mean square error (RMSE)) for hyperparameter tuning on different training and validation sets, while the outer loop of nested cross validation consists of 5 fold cross validation for model evaluation on different test sets.
 
 The diagram below shows how nested cross validation works:
 <img src="https://mlr.mlr-org.com/articles/pdf/img/nested_resampling.png" width="600" height="350">
 
-Given the dataset for this project is small (less than 1000 samples), nested cross validation is the most suitable cross validation method to use for model algorithm selection to provide a more realistic generalization error of machine learning models.
+Given the dataset for this project is moderately large (approximately 30000 samples), nested cross validation is still the most suitable cross validation method to use for model algorithm selection to provide a more realistic generalization error of machine learning models.
 
 The following list of classification models are tested in this project:
-- Logistic Regression
-- Linear SVC
-- K Neighbors Classifier
-- Gaussian Naive Bayes
-- Decision Tree Classifier
-- Random Forest Classifier
-- Extra Trees Classifier
-- Ada Boost Classifier
-- Gradient Boosting Classifier
-- XGBoost Classifier
-- LightGBM Classifier
-- CatBoost Classifier
+- Huber Regression
+- Ridge
+- Lasso
+- ElasticNet
+- Linear SVR
+- Decision Tree Regressor
+- Random Forest Regressor
+- Extra Trees Regressor
+- Ada Boost Regressor
+- Histogram Gradient Boosting Regressor
+- XGBoost Regressor
+- LightGBM Regressor
+- CatBoost Regressor
 
-For model evaluation on multiclass classification, the following metrics are used in this project:
-- Balanced accuracy
-- Precision (macro)
-- Recall (macro)
-- F1 score (macro) - (Main metric for Optuna hyperparameter tuning)
-- Matthew's correlation coefficient
+For model evaluation on regression, the following metrics are used in this project:
+- Root mean squared error - (Main metric for Optuna hyperparameter tuning)
+- Mean absolute error
+- Median absolute error
+
+<b>Note that Mean absolute percentage error (MAPE) is not used for this project because there are target values very close to zero value.</b>
 
 ## Project Findings
 ---
@@ -329,41 +329,7 @@ The following points below summarizes the use of every file/folder available for
 14. _tree.py: Modified python script to include AdaBoost Classifier as part of the set of models that support Shap library.
 15. pipeline_api.py: Main python file for running training pipeline process and performing model prediction.
 
-## MongoDB Atlas Setup
----
-
-![image](https://user-images.githubusercontent.com/34255556/197315546-b60b36b7-10e2-4b50-9eff-ae62ed44b17d.png)
-
-For this project, data provided by the client in JSON format will be stored in MongoDB Atlas, which is a cloud database platform specially for MongoDB.
-
-The following steps below shows the setup of MongoDB Atlas:
-
-1. Register for a new MongoDB Atlas account for free using the following link: https://www.mongodb.com/cloud/atlas/register
-2. After login, create a new database cluster (Shared option) and select the cloud provider and region of your choice:
-
-<img src = "https://user-images.githubusercontent.com/34255556/197315198-8a65d44a-9e75-4d65-9de4-f3c10748b066.png" width="600">
-
-3. Go to Database Access tab under Security section and add a new database user as follows:
-
-<img src = "https://user-images.githubusercontent.com/34255556/197315308-c6c25139-528f-40f4-a3f1-55a6a269df68.png" width="600">
-
-- Keep a record of username and password created for future use.
-
-4. Go to Database tab under Deployment section and click on Connect button:
-
-![image](https://user-images.githubusercontent.com/34255556/197315396-710bae00-c75d-4f69-b267-0ee9e217c819.png)
-
-5. Select "Connect your application" option:
-
-<img src = "https://user-images.githubusercontent.com/34255556/197315427-79eaf258-0ac7-4762-b3d5-4856d8474759.png" width="600">
-
-6. <b>Important: Make a note of the connection string and replace username and password by its values from step 3.</b>
-
-![image](https://user-images.githubusercontent.com/34255556/197315449-c077c899-97ed-4ce7-9d52-25c79bfaa217.png)
-
-- Note that this connection string is required for connecting our API with MongoDB atlas.
-
-The following sections below explains the three main approaches that can be used for deployment in this project after setting up MongoDB Atlas:
+The following sections below explains the three main approaches that can be used for deployment in this project:
 1. <b>Docker</b>
 2. <b>Cloud Platform (Heroku with Docker)</b>
 3. <b>Local environment</b>
