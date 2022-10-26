@@ -7,7 +7,7 @@
 
 With the COVID-19 pandemic, there has been a signficant boom in the e-commerce industry with more sellers shifting their businesses towards e-commerce platforms. While traditional rule-based methods have been used by retailers in the past to manage price optimization, these methods require manual analysis of customer and market data to ensure prices are aligned with current market conditions. Inevitably, the overall expansion of digitization of retail industry in recent years due to the global pandemic has resulted in a massive increase of sales-related data, such that traditional rule-based methods result in difficulty of continuous monitoring.
 
-For this project, the main goal is to deploy initial regression models that help to predict retail price for various products. With the help of Machine Learning, retailers will be able to utilize the full potential of their data by effectively setting prices that maximizes their profits without discouraging customers from purchasing their products.
+For this project, the main goal is to deploy initial regression models that help to predict retail price for various products. With the help of Machine Learning, retailers will be able to utilize the full potential of their data by effectively setting prices competitively for improving profits in the long term.
 
 Dataset is provided in .csv format by client under Training_Batch_Files folder for model training. (not included in this repository due to data confidentiality reasons) In addition, schema of datasets for model training is provided in .json format by the client for storing csv files into a single PostgreSQL database.
 
@@ -140,7 +140,7 @@ Although there are pairs of features having high correlation with one another, t
 
 The diagram below shows correlation heatmap for all features (both numerical and categorical):
 
-<img src="https://user-images.githubusercontent.com/34255556/197941466-de186278-1a95-4308-8906-289a537ef70a.png" width="500">
+<img src="https://user-images.githubusercontent.com/34255556/197942899-fef1f52c-0558-48ba-9b9e-226ec03169a0.png" width="500">
 
 Note that correlation is derived for the following types of relationships between variables using "associations" function under "dython" library:
 - Between two numerical columns: Spearman
