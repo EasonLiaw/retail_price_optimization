@@ -18,14 +18,14 @@ For model prediction, a web API is used (created using StreamLit) for user input
 - [Model Training Setting](#model-training-setting)
 - [Project Findings](#project-findings)
   - [EDA](#1-eda-exploratory-data-analysis)
-  - [Best classification model and pipeline configuration](#2-best-classification-model-and-pipeline-configuration)
-  - [Summary of model evaluation metrics from best classification model](#3-summary-of-model-evaluation-metrics-from-best-classification-model)
+  - [Best regression model and pipeline configuration](#2-best-regression-model-and-pipeline-configuration)
+  - [Summary of model evaluation metrics from best regression model](#3-summary-of-model-evaluation-metrics-from-best-regression-model)
   - [Hyperparameter importances from Optuna (Final model)](#4-hyperparameter-importances-from-optuna-final-model)
   - [Hyperparameter tuning optimization history from Optuna](#5-hyperparameter-tuning-optimization-history-from-optuna)
-  - [Overall confusion matrix and classification report from final model trained](#6-overall-confusion-matrix-and-classification-report-from-final-model-trained)
-  - [Precision Recall Curve from best classification model](#7-precision-recall-curve-from-best-classification-model)
+  - [Overall residual plot from final model trained](#6-overall-residual-plot-from-final-model-trained)
+  - [Leverage plot](#7-leverage-plot)
   - [Learning Curve Analysis](#8-learning-curve-analysis)
-  - [Feature Importance based on Shap Values for every class](#9-feature-importance-based-on-shap-values-for-every-class)
+  - [Feature Importance based on Shap Values](#9-feature-importance-based-on-shap-values)
 - [CRISP-DM Methodology](#crisp-dm-methodology)
 - [Project Architecture Summary](#project-architecture-summary)
 - [Project Folder Structure](#project-folder-structure)
@@ -34,16 +34,15 @@ For model prediction, a web API is used (created using StreamLit) for user input
 - [Project Instructions (Heroku with Docker)](#project-instructions-heroku-with-docker)
 - [Initial Data Cleaning and Feature Engineering](#initial-data-cleaning-and-feature-engineering)
 - [Machine Learning Pipelines Configuration](#machine-learning-pipelines-configuration)
-  - [Handling imbalanced data](#i-handling-imbalanced-data)
-  - [Feature Engineering](#ii-feature-engineering)
-  - [Encoding "interval" features](#iii-encoding-interval-features)
-  - [Encoding "binary" features](#iv-encoding-binary-features)
-  - [Encoding "ordinal" features with different magnitudes "for certain"](#v-encoding-ordinal-features-with-different-magnitudes-for-certain)
-  - [Encoding features with rare categories](#vi-encoding-features-with-rare-categories)
-  - [Encoding "nominal" and "ordinal" features with uncertainty in magnitude difference](#vii-encoding-nominal-and-ordinal-features-with-uncertainty-in-magnitude-difference)
-  - [Encoding "time-related" features](#viii-encoding-time-related-features)  
-  - [Feature Scaling](#x-feature-scaling)
-  - [Feature Selection](#xi-feature-selection)
+  - [Handling outliers by capping at extreme values](#i-handling-outliers-by-capping-at-extreme-values)
+  - [Gaussian transformation on non-gaussian variables](#ii-gaussian-transformation-on-non-gaussian-variables)
+  - [Encoding features with rare categories](#iii-encoding-features-with-rare-categories)
+  - [Feature Engineering](#iv-feature-engineering)
+  - [Encoding "interval" features](#v-encoding-interval-features)
+  - [Encoding "nominal" features](#vi-encoding-nominal-features)
+  - [Encoding "time-related" features](#vii-encoding-time-related-features)  
+  - [Feature Scaling](#viii-feature-scaling)
+  - [Feature Selection](#x-feature-selection)
 - [Legality](#legality)
 
 ## Code and Resources Used
@@ -139,159 +138,116 @@ The set of figures below shows an example of the following plots mentioned above
 </p>
 
 ---
-#### 2. Best classification model and pipeline configuration
+#### 2. Best regression model and pipeline configuration
 
 The following information below summarizes the configuration of the best model identified in this project:
 
-  - <b>Best model class identified</b>: Linear Support Vector Classifier
+  - <b>Best model class identified</b>: Histogram Gradient Boosting Regressor
 
-  - <b>Method of handling imbalanced data</b>: None
+  - <b>Method of handling outliers</b>: Retain outliers
+
+  - <b>Method of feature scaling</b>: None
   
-  - <b>Contrast encoding method for ordinal data</b>: Sum Encoder
-
-  - <b>Method of feature scaling</b>: MinMaxScaler
-
-  - <b>Feature selection method</b>: FeatureWiz
-
-  - <b>Number of features selected</b>: 68
-
-  - <b>List of features selected</b>: ['Number_people_household_2', 'Number_people_household_3', 'Enoughtime_toplay_1', 'Enoughtime_toplay_3', 'Outdoorplay_freq_3',  'Method_of_keepintouch_I live near them so I can see them (at a social distance);By phone (texting, calling or video calling);On social media;On games consoles', 'Method_of_keepintouch_I live near them so I can see them (at a social distance);By phone (texting, calling or video calling)', 'Method_of_keepintouch_By phone (texting, calling or video calling);On social media', 'Method_of_keepintouch_By phone (texting, calling or video calling);On social media;On games consoles', 'Method_of_keepintouch_By phone (texting, calling or video calling)', 'Sugarsnack_in_week_1', 'Sugarsnack_in_week_2', 'Sugarsnack_in_week_3', 'Tired_in_week_0', 'Tired_in_week_1', 'Tired_in_week_2', 'Tired_in_week_3', 'Garden', 'Play_near_water', 'Play_in_grass_area', 'Play_in_house','Hours_slept', 'Contact_by_visit', 'Contact_by_phone', 'Snacks_Brk', 'Yogurt_Brk', 'Healthy_Cereal_Brk', 'Easywalk_topark', 'Read_Info_Sheet', 'School_Health_Records', 'Gender_Girl', 'Life_scale', 'School_scale', 'Play_inall_places_3', 'Doingwell_schoolwork_0', 'Sports_in_week_0', 'Internet_in_week_2', 'Takeawayfood_in_week_1', 'Concentrate_in_week_0', 'Going_school_No, I am at home', 'WIMD_2019_Decile', 'Friends_scale', 'Safety_toplay_scale', 'Type_of_play_places_In my house;In my garden', 'Breakfast_ytd_Sugary cereal e.g. cocopops, frosties, sugar puffs, chocolate cereals', 'Homespace_relax_Sometimes but not all the time', 'Study_Year', 'Lots_of_choices_important_1', 'Lots_of_choices_important_4', 'Lots_of_things_good_at_1', 'Lots_of_things_good_at_2', 'Lots_of_things_good_at_4', 'Softdrink_in_week_0', 'Softdrink_in_week_2', 'Softdrink_in_week_3', 'Sleeptime_ytd_sin', 'Sleeptime_ytd_hour_cos', 'Birth_Date_day_of_year_sin', 'Birth_Date_day_of_year_cos', 'Birth_Date_quarter_sin', 'Birth_Date_quarter_cos', 'Awaketime_today_hour_cos', 'Awaketime_today_hour_sin', 'Timestamp_day_of_week_sin', 'Timestamp_month_cos', 'Timestamp_month_sin']
+  - <b>Removing highly correlated features (>0.8)</b>: No
   
-  - <b>Clustering as additional feature</b>: Yes
+  - <b>Feature selection method</b>: Feature Importance from ExtraTreesRegressor
 
-  - <b>Best model hyperparameters</b>: 
-  {'C': 0.13529521130402028, 'class_weight': 'balanced', 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1, 'loss': 'squared_hinge', 'max_iter': 1000, 'multi_class': 'ovr', 'penalty': 'l1', 'random_state': 120, 'tol': 0.0001,'verbose': 0}
+  - <b>Number of features selected</b>: 14
+
+  - <b>List of features selected</b>: ['Brand', 'NSU', 'Sales at Cost', 'Gross Sales', 'MRP', 'Fdate_year', 'Fdate_month', 'Fdate_quarter', 'Sales at Cost_median_Brand', 'Gross Sales_mean_Brand', 'Gross Sales_median_Brand', 'MRP_mean_Brand', 'MRP_std_Brand', 'MRP_median_Brand']
+  
+  - <b>Best model hyperparameters</b>: {'categorical_features': None, 'early_stopping': 'auto', 'l2_regularization': 0.7053706737458695, 'learning_rate': 0.09253085147706015, 'loss': 'squared_error', 'max_bins': 255, 'max_depth': 7, 'max_iter': 100, 'max_leaf_nodes': 20, 'min_samples_leaf': 29, 'monotonic_cst': None, 'n_iter_no_change': 10, 'quantile': None, 'random_state': 120, 'scoring': 'loss', 'tol': 1e-07, 'validation_fraction': 0.1, 'verbose': 0, 'warm_start': False}
   
 Note that the results above may differ by changing search space of hyperparameter tuning or increasing number of trials used in hyperparameter tuning or changing number of folds within nested cross validation.
 
-For every type of classification model tested in this project, a folder is created for every model class within Intermediate_Train_Results folder with the following artifacts:
+For every type of regression model tested in this project, a folder is created for every model class within Intermediate_Train_Results folder with the following artifacts:
 
-- Confusion Matrix from 5 fold cross validation (.png format)
-- Classification Report from 5 fold cross validation (.png format)
 - HP_Importances for every fold (.png format - 5 in total)
 - Hyperparameter tuning results for every fold (.csv format - 5 in total)
 - Optimization history plot for every fold (.png format - 5 in total)
 - Optuna study object for every fold (.pkl format - 5 in total)
-- Precision-Recall curve (.png format)
+- Residual plot from nested cross validation (.png format)
 
 In addition, the following artifacts are also created for the best model class identified after final hyperparameter tuning on the entire dataset:
 
-- Confusion matrix (.png format)
-- Classification report (.png format)
 - HP_Importances (.png format)
 - Hyperparameter tuning results (.csv format)
 - Optimization history plot (.png format)
 - Optuna study object (.pkl format)
+- Residual plot (.png format)
+- Leverage plot (.png format)
 - Learning curve plot (.png format)
-- Shap plots for feature importance from every class (.png format - 2 in total)
-- Precision recall curve (.png format)
+- Shap plots for feature importance (.png format)
 
 <b>Warning: The following artifacts mentioned above for the best model class identified will not be generated for certain model classes under the following scenarios:
-- Shap plots for KNeighborsClassifier and GaussianNB: For generating shap values for these model classes, Kernel explainer from Shap module can be used but with large computational time.
-- Shap plots for XGBClassifier with dart booster: Tree explainer from Shap module currently doesn't support XGBClassifier with dart booster.</b>
+- Shap plots for XGBRegressor with dart booster: Tree explainer from Shap module currently doesn't support XGBRegressor with dart booster.</b>
 
 ---
-#### 3. Summary of model evaluation metrics from best classification model
+#### 3. Summary of model evaluation metrics from best regression model
 
-The following information below summarizes the evaluation metrics *(average (standard deviation)) from the best model identified in this project along with the confusion matrix from nested cross validation (5 outer fold with 3 inner fold): 
+The following information below summarizes the evaluation metrics *(average (standard deviation)) from the best model identified in this project along with residual plot from nested cross validation (5 outer fold with 3 inner fold): 
 
-<p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196926115-2c43b974-4a55-4624-9e17-8db399b9510c.png" width="400">
-<img src="https://user-images.githubusercontent.com/34255556/196926153-0b2b1d2e-7e09-40f0-9db6-360c87085d1a.png" width="400">
-</p>
+![Residual_Plot_HistGradientBoostingRegressor_from_CV](https://user-images.githubusercontent.com/34255556/197925603-cc8ac94a-31fe-4855-9e28-a866f83a0f67.png)
 
-  - <b>Balanced accuracy (Training set - 3 fold)</b>: 0.4975 (0.0381)
-  - <b>Balanced accuracy (Validation set - 3 fold)</b>: 0.3367 (0.0267)
-  - <b>Balanced accuracy (Test set - 5 fold)</b>: 0.3484 (0.0284)
+  - <b>Root Mean Squared Error (Training set - 3 fold)</b>: 38.8801 (1.7517)
+  - <b>Root Mean Squared Error (Validation set - 3 fold)</b>: 52.6107 (1.7447)
+  - <b>Root Mean Squared Error (Test set - 5 fold)</b>: 49.1677 (6.8408)
 
-  - <b>Precision (Training set - 3 fold)</b>: 0.5574 (0.1139)
-  - <b>Precision (Validation set - 3 fold)</b>: 0.3854 (0.0504)
-  - <b>Precision (Test set - 5 fold)</b>: 0.3346 (0.0384)
+  - <b>Mean Absolute Error (Training set - 3 fold)</b>: 12.9003 (0.5338)
+  - <b>Mean Absolute Error (Validation set - 3 fold)</b>: 14.6027 (0.4006)
+  - <b>Mean Absolute Error (Test set - 5 fold)</b>: 14.0344 (0.8000)
 
-  - <b>Recall (Training set - 3 fold)</b>: 0.4975 (0.0381)
-  - <b>Recall (Validation set - 3 fold)</b>: 0.3367 (0.0267)
-  - <b>Recall (Test set - 5 fold)</b>: 0.3484 (0.0284)
-
-  - <b>F1 score (Training set - 3 fold)</b>: 0.4952 (0.0562)
-  - <b>F1 score (Validation set - 3 fold)</b>: 0.3274 (0.0142)
-  - <b>F1 score (Test set - 5 fold)</b>: 0.3293 (0.0265)
-
-  - <b>Matthews Correlation Coefficient (Training set - 3 fold)</b>: 0.3590 (0.0605)
-  - <b>Matthews Correlation Coefficient (Validation set - 3 fold)</b>: 0.1631 (0.0316)
-  - <b>Matthews Correlation Coefficient (Test set - 5 fold)</b>: 0.1750 (0.0487)
+  - <b>Median Absolute Error (Training set - 3 fold)</b>: 5.0394 (0.4322)
+  - <b>Median Absolute Error (Validation set - 3 fold)</b>: 5.1313 (0.4206)
+  - <b>Median Absolute Error (Test set - 5 fold)</b>: 5.0042 (0.4056)
 
 Note that the results above may differ by changing search space of hyperparameter tuning or increasing number of trials used in hyperparameter tuning or changing number of folds within nested cross validation
 
 ---
 #### 4. Hyperparameter importances from Optuna (Final model)
 
-![HP_Importances_LinearSVC_Fold_overall](https://user-images.githubusercontent.com/34255556/196925529-e25eac89-ea69-4374-9d54-9951e331c90c.png)
+![HP_Importances_HistGradientBoostingRegressor_Fold_overall](https://user-images.githubusercontent.com/34255556/197925076-3b0b7f66-3cd8-4558-b166-ba3ba12def69.png)
 
-From the image above, determining the contrast method for encoding ordinal data and method for handling imbalanced data as part of preprocessing pipeline for Linear SVC model provides the highest influence (0.22), followed by selecting hyperparameter value of "C", "class_weight" and feature selection method. Setting hyperparameter value of penalty and use of clustering as additional feature for Linear SVC model provides little to zero influence on results of hyperparameter tuning. This may suggest that both penalty hyperparameters of Linear SVC model and use of clustering as additional feature can be excluded from hyperparameter tuning in the future during model retraining to reduce complexity of hyperparameter tuning process.
+From the image above, setting the learning rate for Histogram Gradient Boosting Regression model provides the highest influence (0.67), followed by selecting hyperparameter value of "l2 regularization", "min_samples_leaf", "max_leaf_nodes" and feature selection method. Setting hyperparameter value of max depth for  Histogram Gradient Boosting Regression model provides little to zero influence on results of hyperparameter tuning. This may suggest that max depth hyperparameter of Histogram Gradient Boosting Regression model can be excluded from hyperparameter tuning in the future during model retraining to reduce complexity of hyperparameter tuning process.
 
 ---
 #### 5. Hyperparameter tuning optimization history from Optuna
 
-![Optimization_History_LinearSVC_Fold_overall](https://user-images.githubusercontent.com/34255556/196925946-56216317-c37c-4cb5-ad0b-632145be6386.png)
+![Optimization_History_HistGradientBoostingRegressor_Fold_overall](https://user-images.githubusercontent.com/34255556/197925433-e0de62dc-9b81-4d0d-bf1f-8ac437339f4e.png)
 
-From the image above, the best objective value (average of F1 macro scores from 3 fold cross validation) is identified after 20 trials.
-
----
-#### 6. Overall confusion matrix and classification report from final model trained
-
-<p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196926313-f89b556b-2cd6-4b95-9095-7c3f2733c7e7.png" width="400">
-<img src="https://user-images.githubusercontent.com/34255556/196926276-512f430d-5aaa-4916-96af-c71154cdcc2a.png" width="400">
-</p>
-
-From the image above, the classification model performs better for cases where a child's wellbeing is either normal or emotional and behaviour significant with more samples being classified correctly. Given that the model evaluation criteria emphasize the costly impact of having both false positives and false negatives equally for all classes, the current classification model is optimized to improve F1 macro score.
+From the image above, the best objective value (average of RMSE scores from 3 fold cross validation) is identified after 13 trials.
 
 ---
-#### 7. Precision Recall Curve from best classification model
+#### 6. Overall residual plot from final model trained
 
-![PrecisionRecall_Curve_LinearSVC_CV](https://user-images.githubusercontent.com/34255556/196927600-68a0119c-c961-4ad1-9cd0-3efa9d7c1258.png)
+![Residual_Plot_HistGradientBoostingRegressor_final_model](https://user-images.githubusercontent.com/34255556/197925793-79e4b552-a20c-48dd-94ba-c29889f68102.png)
 
-From the diagram above, precision-recall curve from best model class identified shows that the model performs best on identify wellbeing status of children that are normal (0.89), followed by emotional_significant (0.10), behaviour_significant (0.09) and emotional_and_behaviour_significant (0.06). 
+From the image above, the regression model performs better for lower price values predicted with smaller variance, as compared to larger price values predicted with larger variance. This clearly indicates that linear models are less suitable for predicting retail prices due to homoscedasticity (constant variance) assumption being violated.
+
+---
+#### 7. Leverage plot
+
+![Leverage_Plot](https://user-images.githubusercontent.com/34255556/197926315-56da2865-f219-4611-a5c2-50ac53003436.png)
+
+From the diagram above, there are many records that are identified as having high leverage or large residuals. Using Cook’s distance, this confirms that there are approximately 1027 records (2.76% of total observations) as being highly influential, which requires further investigation on the data for better understanding whether these data anomalies should be treated.
 
 ---
 #### 8. Learning Curve Analysis
 
-![LearningCurve_LinearSVC](https://user-images.githubusercontent.com/34255556/196927116-575713c0-699f-4f23-bfd8-248341a22c48.png)
+![LearningCurve_HistGradientBoostingRegressor](https://user-images.githubusercontent.com/34255556/197926663-47037f1d-c9e4-4175-bf86-3b5701cbab0d.png)
 
-From the diagram above, the gap between train and test F1 macro scores (from 5-fold cross validation) gradually decreases as number of training sample size increases.
+From the diagram above, the gap between train and test RMSE scores (from 5-fold cross validation) gradually decreases as number of training sample size increases.
 However, the gap between both scores remain large, which indicates that adding more training data may help to improve generalization of model.
 
 ---
-#### 9. Feature Importance based on Shap Values for every class
+#### 9. Feature Importance based on Shap Values
 
-<b> Emotional and behaviour significant class</b>
 <p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196928977-169bdf6d-27b8-4553-82b0-3cd22c727088.png" width="800">
-<img src="https://user-images.githubusercontent.com/34255556/196929024-2083fdcb-1990-4acc-b832-6ecb7e3f5820.png" width="800">
+<img src="https://user-images.githubusercontent.com/34255556/197926822-e023a34b-adc2-4512-9233-ec4615e991e2.png" width="500">
+<img src="https://user-images.githubusercontent.com/34255556/197926840-d7f2ca90-2a8a-43b2-b0f9-f70bdf3395e6.png" width="500">
 </p>
 
-From both diagrams above, gender of child is the most influential variable from the top 68 variables identified from feature selection using FeatureWiz for predicting whether a child's wellbeing is both emotional and behaviour significant. Shap's summary plot provides indication of how values of different features may impact the result of model prediction. For example, gender of child not being identified as female have higher probability of being emotional and behaviour significant, while a child who is very unhappy with school or life (lower value of scale close to 0) has higher probabiliy of being identified as emotional and behaviour significant.
-
-The following plots below represents feature importance based on shap values for other classes for reference:
-
-<b> Emotional significant class</b>
-<p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196930962-850b0c9a-b95e-4bc5-a2a8-394c89e1cc85.png" width="800">
-<img src="https://user-images.githubusercontent.com/34255556/196931136-4d8b1fe5-16de-4d69-9f70-9bd34ed19a73.png" width="800">
-</p>
-
-<b> Behaviour significant class</b>
-<p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196930911-5de4d998-39f5-4fcf-ae82-80291b84927d.png" width="800">
-<img src="https://user-images.githubusercontent.com/34255556/196931084-f93f8c56-796e-47e1-b532-34080bae5ceb.png" width="800">
-</p>
-
-<b> Normal class</b>
-<p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196931003-40fbf74d-df59-4879-bfdb-5e01b65580bf.png" width="800">
-<img src="https://user-images.githubusercontent.com/34255556/196931177-effe0b51-0207-4f09-8621-da4fc694204b.png" width="800">
-</p>
-
+From both diagrams above, MRP (Maximum Retail Price) is the most influential variable from the top 14 variables identified from feature selection using Extra Trees Regressor for predicting retail price of various products. Shap's summary plot provides indication of how values of different features may impact the result of model prediction. For example, higher values of MRP and Sales at Cost indicate higher predicted values of selling price (SP).
 
 ## CRISP-DM Methodology
 ---
@@ -325,9 +281,8 @@ The following points below summarizes the use of every file/folder available for
 10. requirements.txt: List of Python packages to install for project deployment
 11. setup.py : Script for installing relevant python packages for project deployment
 12. Docker_env: Folder that contains files that are required for model deployment without logging files or results.
-13. BorutaShap.py: Modified python script with some changes to coding for performing feature selection based on shap values on test set
-14. _tree.py: Modified python script to include AdaBoost Classifier as part of the set of models that support Shap library.
-15. pipeline_api.py: Main python file for running training pipeline process and performing model prediction.
+13. _tree.py: Modified python script to include AdaBoost Classifier as part of the set of models that support Shap library.
+14. pipeline_api.py: Main python file for running training pipeline process and performing model prediction.
 
 The following sections below explains the three main approaches that can be used for deployment in this project:
 1. <b>Docker</b>
@@ -351,48 +306,67 @@ Docker Desktop needs to be installed into your local system (https://www.docker.
 
 1. Download and extract the zip file from this github repository into your local machine system.
 
-<img src="https://user-images.githubusercontent.com/34255556/197315695-5f19b123-22a3-4751-82cd-d6bbca13a3d9.png" width="600" height="200">
+<img src="https://user-images.githubusercontent.com/34255556/197928020-10f6bf6e-57aa-439f-b79f-8111d6e36083.png" width="600" height="200">
 
 2. Copy Docker_env folder into a separate directory, before proceeding with subsequent steps which will use Docker_env folder as root directory.
-  
-3. On line 8 inside Dockerfile, set the environment variable MONGO_DB_URL as the connection string defined in the last step of MongoDB Atlas Setup section.
 
-![image](https://user-images.githubusercontent.com/34255556/197315793-d676cd57-b2e3-4702-9c83-1fcd84efe6d8.png)
+3. Create the following volume (postgresql) and network in Docker for connecting between database container and application container using the following syntax:
+```
+docker volume create postgresql
+docker network create postgresqlnet
+```
+Note that the naming conventions for both volumes and network can be changed.
 
-4. Build a new docker image on the project directory with the following command:
+4. Run the following docker volumes and network for creating a new PostgreSQL container in Docker:
+```
+docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -v /data:/var/lib/postgresql/data --network postgresqlnet -d postgres
+```
+Note that postgresql refers to the name of the container, which will also be host name of database.
+
+5. Add an additional Python file named as DBConnectionSetup.py that contains the following Python code structure:
+```
+logins = {"host": <host_name>, 
+          "user": <user_name>, 
+          "password": <password>, 
+          "dbname": <default_database_name>} 
+```
+- For security reasons, this file needs to be stored in private. (Default host is container name defined in step 4 and user is postgres for PostgreSQL)
+
+6. Build a new docker image on the project directory with the following command:
 ```
 docker build -t api-name .
 ```
 
-5. Run the docker image on the project directory with the following command: 
+7. Run the docker image on the project directory with the following command: 
 ```
-docker run -e PORT=8501 -p 8501:8501 api-name
+docker run --network postgresqlnet -e PORT=8501 -p 8501:8501 api-name
 ```
+Note that the command above creates a new docker app container with the given image "api-name". Adding network onto the docker app container will allow connection between two separate docker containers.
 
-6. A new browser will open after successfully running the streamlit app with the following interface:
+8. A new browser will open after successfully running the streamlit app with the following interface:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197315976-fa90cc7a-a0b3-4c82-9c38-62072db71399.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197928966-d98530da-cb51-4db8-b052-47f51069c909.png" width="600">
 
 Browser for the application can be opened from Docker Desktop by clicking on the specific button shown below:
 
-![image](https://user-images.githubusercontent.com/34255556/197315936-2ea47b7a-9919-4010-b806-52f864966ea3.png)
+![Image3](https://user-images.githubusercontent.com/34255556/197929022-0f029983-6c51-40e9-ba1b-3a44c4787d84.png)
 
-7. From the image above, click on Training Data Validation first for initializing data ingestion into MongoDB Atlas, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
+9. From the image above, click on Training Data Validation first for initializing data ingestion into PostgreSQL, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316040-748289f6-f509-4e29-aac0-1765de6d3167.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929141-3df4a3f0-6ac3-4b71-b519-479aebdec935.png" width="600">
 
-8. After running all steps of the training pipeline, run the following command to extract files from a specific directory within the docker container to host machine for viewing:
+10. After running all steps of the training pipeline, run the following command to extract files from a specific directory within the docker container to host machine for viewing:
 ```
 docker cp <container-id>:<source-dir> <destination-dir>
 ```
 
-9. After performing model training, clicking on the Model Prediction section expands the following section that allows user input for model prediction:
+11. After performing model training, clicking on the Model Prediction section expands the following section that allows user input for model prediction:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316098-ec71b7df-6819-4c46-944b-27596c6b262b.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929228-29644a4a-fb9b-48de-ba08-2b4fcb5fe2ae.png" width="600">
 
-10. The image below shows an example of output from model prediction after successfully completed all of the above steps:
+12. The image below shows an example of output from model prediction after successfully completed all of the above steps:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316193-d1cf6fb7-91be-4283-91d6-cced35c70e41.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929274-e42dc33c-1f81-40b9-9a8f-5ae73345a872.png" width="600">
 
 ## Project Instructions (Heroku with Docker)
 ---
@@ -410,48 +384,63 @@ A suitable alternative for deploying this project is to use docker images with c
 For replicating the steps required for running this project on your own Heroku account, the following steps are required:
 1. Clone this github repository into your local machine system or your own Github account if available.
 
-<img src="https://user-images.githubusercontent.com/34255556/197315695-5f19b123-22a3-4751-82cd-d6bbca13a3d9.png" width="600" height="200">
+<img src="https://user-images.githubusercontent.com/34255556/197928020-10f6bf6e-57aa-439f-b79f-8111d6e36083.png" width="600" height="200">
 
 2. Copy Docker_env folder into a separate directory, before proceeding with subsequent steps which will use Docker_env folder as root directory.
 
 3. Go to your own Heroku account and create a new app with your own customized name.
 <img src="https://user-images.githubusercontent.com/34255556/160223589-301262f6-6225-4962-a92f-fc7ca8a0eee9.png" width="600" height="400">
 
-4. On line 8 inside Dockerfile, set the environment variable MONGO_DB_URL as the connection string defined in the last step of MongoDB Atlas Setup section.
+4. Go to "Resources" tab and search for Heroku Postgres in the add-ons search bar and select it with the relevant pricing plan. (Note that I select Hobby Dev plan, which is currently free. However, recommended plan to select is Hobby- basic, which currently cost about $9 per month to increase storage capacity for this project.)
+<img src="https://user-images.githubusercontent.com/34255556/197930492-f59865f6-c5ae-42b5-bd88-9b9f9e404e98.png">
 
-![image](https://user-images.githubusercontent.com/34255556/197315793-d676cd57-b2e3-4702-9c83-1fcd84efe6d8.png)
+5. Under Model_Training_Modules/validation_train_data.py file, comment out the following lines:
+![image](https://user-images.githubusercontent.com/34255556/197930177-1646465f-df80-4651-9ea8-8ad6482e1ed1.png)
 
-5. From a new command prompt window, login to Heroku account and Container Registry by running the following commands:
+Note that the current python script will create new database if not exist in local environment/docker, but these commands will fail when connecting to Heroku PostgreSQL database since a database has already been assigned when adding Heroku PostgreSQL resource to the Heroku app.
+
+6. Add an additional Python file named as DBConnectionSetup.py that contains the following Python code structure:
+```
+logins = {"host": <host_name>, 
+          "user": <user_name>, 
+          "password": <password>, 
+          "dbname": <default_database_name>} 
+```
+- For security reasons, this file needs to be stored in private. Note that configuration details for connecting application with Heroku PostgreSQL can be found by finding database credentials under settings tab as shown in the image below:
+
+![image](https://user-images.githubusercontent.com/34255556/197931105-1a0b0c14-afc6-44c5-95ff-7bc04f35e22f.png)
+
+7. From a new command prompt window, login to Heroku account and Container Registry by running the following commands:
 ```
 heroku login
 heroku container:login
 ```
 Note that Docker needs to be installed on your local system before login to heroku's container registry.
 
-6. Using the Dockerfile, push the docker image onto Heroku's container registry using the following command:
+8. Using the Dockerfile, push the docker image onto Heroku's container registry using the following command:
 ```
 heroku container:push web -a app-name
 ```
 
-7. Release the newly pushed docker images to deploy app using the following command:
+9. Release the newly pushed docker images to deploy app using the following command:
 ```
 heroku container:release web -a app-name
 ```
 
-8. After successfully deploying docker image onto Heroku, open the app from the Heroku platform and you will see the following interface designed using Streamlit:
-<img src = "https://user-images.githubusercontent.com/34255556/197315976-fa90cc7a-a0b3-4c82-9c38-62072db71399.png" width="600">
+10. After successfully deploying docker image onto Heroku, open the app from the Heroku platform and you will see the following interface designed using Streamlit:
+<img src = "https://user-images.githubusercontent.com/34255556/197928966-d98530da-cb51-4db8-b052-47f51069c909.png" width="600">
 
-9. From the image above, click on Training Data Validation first for initializing data ingestion into MongoDB Atlas, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
+11. From the image above, click on Training Data Validation first for initializing data ingestion into Heroku PostgreSQL, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316040-748289f6-f509-4e29-aac0-1765de6d3167.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929141-3df4a3f0-6ac3-4b71-b519-479aebdec935.png" width="600">
 
-10. After performing model training, clicking on the Model Prediction section expands the following section that allows user input for model prediction:
+12. After performing model training, clicking on the Model Prediction section expands the following section that allows user input for model prediction:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316098-ec71b7df-6819-4c46-944b-27596c6b262b.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929228-29644a4a-fb9b-48de-ba08-2b4fcb5fe2ae.png" width="600">
 
-11. The image below shows an example of output from model prediction after successfully completed all of the above steps:
+13. The image below shows an example of output from model prediction after successfully completed all of the above steps:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316193-d1cf6fb7-91be-4283-91d6-cced35c70e41.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929274-e42dc33c-1f81-40b9-9a8f-5ae73345a872.png" width="600">
 
 <b>Important Note</b>: 
 - Using "free" dynos on Heroku app only allows the app to run for a maximum of 30 minutes. Since the model training and prediction process takes a long time, consider changing the dynos type to "hobby" for unlimited time, which cost about $7 per month per dyno. You may also consider changing the dynos type to Standard 1X/2X for enhanced app performance.
@@ -463,11 +452,21 @@ heroku container:release web -a app-name
 If you prefer to deploy this project on your local machine system, the steps for deploying this project has been simplified down to the following:
 
 1. Download and extract the zip file from this github repository into your local machine system.
-<img src="https://user-images.githubusercontent.com/34255556/197315695-5f19b123-22a3-4751-82cd-d6bbca13a3d9.png" width="600" height="200">
+<img src="https://user-images.githubusercontent.com/34255556/197928020-10f6bf6e-57aa-439f-b79f-8111d6e36083.png" width="600" height="200">
 
 2. Copy Docker_env folder into a separate directory, before proceeding with subsequent steps which will use Docker_env folder as root directory.
   
-3. Add environment variable "MONGO_DB_URL" with connection string defined from last step of MongoDB Atlas setup section as value on your local system. The following link provides an excellent guide for setting up environment variables on your local system: https://chlee.co/how-to-setup-environment-variables-for-windows-mac-and-linux/
+3. Add an additional Python file named as DBConnectionSetup.py that contains the following Python code structure:
+```
+logins = {"host": <host_name>, 
+          "user": <user_name>, 
+          "password": <password>, 
+          "dbname": <default_database_name>} 
+```
+- For security reasons, this file needs to be stored in private. (Default host is postgres and user is postgres for PostgreSQL)
+- Note that you will need to install PostgreSQL if not available in your local system: https://www.postgresql.org/download/windows/
+- Ensure that PostgreSQL services is running on local system as shown in image below:
+![image](https://user-images.githubusercontent.com/34255556/197931808-220d182b-4e4e-4d9c-97ba-3a20c102d501.png)
 
 4. Open anaconda prompt and create a new environment with the following syntax: 
 ```
@@ -485,7 +484,7 @@ conda activate myenv
 pip install -r requirements.txt
 ```
 
-7. Overwrite both BorutaShap.py and _tree.py scripts in relevant directories (<b>env/env-name/lib/site-packages and env/env-name/lib/site-packages/shap/explainers</b>) where the original files are located.
+7. Overwrite _tree.py scripts in relevant directory (<b>env/env-name/lib/site-packages/shap/explainers</b>) where the original file is located.
 
 8. After installing all the required Python libraries, run the following command on your project directory: 
 ```
@@ -494,44 +493,41 @@ streamlit run pipeline_api.py
 
 9. A new browser will open after successfully running the streamlit app with the following interface:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197315976-fa90cc7a-a0b3-4c82-9c38-62072db71399.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197928966-d98530da-cb51-4db8-b052-47f51069c909.png" width="600">
 
-10. From the image above, click on Training Data Validation first for initializing data ingestion into MongoDB Atlas, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
+10. From the image above, click on Training Data Validation first for initializing data ingestion into PostgreSQL, followed by subsequent steps from top to bottom in order to avoid potential errors with the model training/model prediction process. The image below shows an example of notification after the process is completed for Training Data Validation process:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316040-748289f6-f509-4e29-aac0-1765de6d3167.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929141-3df4a3f0-6ac3-4b71-b519-479aebdec935.png" width="600">
 
 11. After performing model training, clicking on the Model Prediction section expands the following section that allows user input for model prediction:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316098-ec71b7df-6819-4c46-944b-27596c6b262b.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929228-29644a4a-fb9b-48de-ba08-2b4fcb5fe2ae.png" width="600">
 
 12. The image below shows an example of output from model prediction after successfully completed all of the above steps:
 
-<img src = "https://user-images.githubusercontent.com/34255556/197316193-d1cf6fb7-91be-4283-91d6-cced35c70e41.png" width="600">
+<img src = "https://user-images.githubusercontent.com/34255556/197929274-e42dc33c-1f81-40b9-9a8f-5ae73345a872.png" width="600">
 
 ## Initial Data Cleaning and Feature Engineering
 ---
 After performing Exploratory Data Analysis, the following steps are performed initially on the entire dataset before performing further data preprocessing and model training:
 
-i) Filter data where respondent provides permission to use questionnaire (Use_questionnaire feature)
+i) Filter data where Sales at Cost is at least greater than or equal to zero value.  Further investigation will be required to validate those records before including those as part of the analysis.
 
-ii) Derive target variable based on features related to Me and My Feelings questionnaire.
+ii) Ensure NSU, MRP and SP values are strictly non-negative. Gross Sales variable which is multiplication of MRP and NSU will need to be recalculated for affected values.
 
-iii) Reformat time related features (i.e Timestamp, Birthdate, Sleeptime_ytd and Awaketime_today) to appropriate form
+iii) Filter data where SP (Selling Price) is less than or equal to MRP (Maximum retail price), since it is illegal for retailers to set retail prices beyond the maximum possible retail price.
 
-iv) Removing list of irrelevant colummns identified from dataset (i.e. unique identifier features, features related to target variable to prevent target leakage and LSOA related features that have direct one to one relationship with WIMD related features)
+iv) Derive datetime related features from Fdate column (year, month and quarter)
 
-v) Checking for duplicated rows and remove if exist
+v) Removing list of irrelevant colummns identified from dataset (i.e. unique identifier features and features that exist only after target variable is derived)
 
-vi) Split dataset into features and target labels.
+vi) Checking for duplicated rows and remove if exist
 
-vii) Perform missing imputation on categorical variables based on highest frequency for every category.
+vii) Split dataset into features and target labels.
 
 viii) Save reduced set of features and target values into 2 different CSV files (X.csv and y.csv) for further data preprocessing with pipelines to reduce data leakage.
 
 For more details of which features have been initially removed from the dataset, refer to the following CSV file: <b>Columns_Drop_from_Original.csv</b>
-
-In addition, the following pickle files (with self-explanatory names) have been created inside Intermediate_Train_Results folder during this stage which may be used later on during data preprocessing on test data:
-- <b>CategoryImputer.pkl</b>
 
 ## Machine Learning Pipelines Configuration
 ---
@@ -539,130 +535,72 @@ While data preprocessing steps can be done on the entire dataset before model tr
 
 The sections below summarizes the details of Machine Learning pipelines with various variations in steps:
 
-#### i. Handling imbalanced data
-While most machine learning models have hyperparameters that allow adjustment of <b>class weights</b> for classification, an alternative solution to handle imbalanced data is to use oversampling method.
+#### i. Handling outliers by capping at extreme values
+Machine learning models like Ridge, Lasso, ElasticNet and Linear SVR are highly sensitive to outliers, which may impact model performance. For those 4 types of models, the presence of this step of the pipeline by capping outliers at extreme ends of gaussian/non-gaussian distribution will be tested accordingly using Winsorizer function from feature-engine library.
 
-For this project, the following methods of handling imbalanced data are tested:
+Note that Anderson test is used to identify gaussian vs non-gaussian distribution in this pipeline step.
 
-- SMOTEN: Synthetic Minority Over-sampling Technique for Nominal data.
-- No oversampling or undersampling required
+#### ii. Gaussian transformation on non-gaussian variables
+In Machine Learning, several machine learning models like Huber Regression, Ridge, Lasso and ElasticNet tends to perform best when data follows the assumption of normal distribution. The following types of gaussian transformation are tested on non-gaussian features and the gaussian transformation that works best on given feature (the lowest test statistic that is smaller than 5% critical value) will be used for gaussian transformation:
 
-Note that this dataset do not contain continuous variables, thus the only suitable methods available for handling imbalanced data is either using SMOTEN for oversampling or using class weights hyperparameter.
+- Logarithmic
+- Reciprocal
+- Square Root
+- Yeo Johnson
+- Square
+- Quantile (Normal distribution)
 
-#### ii. Feature Engineering
-The following features are derived after handling imbalanced data if relevant:
-- Age (Difference between Timestamp and Birth_Date)
-- Hours slept (Difference between Awaketime_today and Sleeptime_ytd)
-- Datetime features (i.e. year, month, quarter, week, day_of_week, day_of_month, day_of_year, hour and minute) from Timestamp, Birth_Date, Awaketime_today and Sleeptime_ytd (using DatetimeFeatures function from feature-engine library)
-- Number of methods of keep in touch (based on Method_of_keepintouch feature)
-- Number of types of play places (based on Type_of_play_places feature)
-- Number of breakfast food yesterday (based on Breakfast_ytd feature)
+Note that Anderson test is used to identify whether a given gaussian transformation technique successfully converts a non-gaussian feature to a gaussian feature.
 
-#### iii. Encoding "interval" features
+#### iii. Encoding features with rare categories
+For features that contain many unique categories (i.e. NAME, Brand and MC), these features may have categories that are considered to be "rare" due to low frequency. To reduce the cardinality of these features, <b>RareLabelEncoder</b> from feature-engine library is used.
+
+#### iv. Feature Engineering
+The following additional features are derived:
+- Mean of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per ZONE
+- Standard deviation of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per ZONE
+- Median of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per ZONE
+- Mean of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per Brand
+- Standard deviation of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per Brand
+- Median of 'NSU','Sales at Cost', 'Gross Sales' and 'MRP' per Brand
+- Number of unique materical category (MC) per brand
+
+#### v. Encoding "interval" features
 Features that are identifed as interval data types have equal magnitudes between different values. These features can be encoded directly using custom <b>label encoding (from 0)</b>:
-- Study_Year
-- Safety_toplay_scale
-- Health_scale
-- School_scale
-- Family_scale
-- Friends_scale
-- Looks_scale
-- Life_scale
-- WIMD_2019_Rank
-- WIMD_2019_Decile
-- WIMD_2019_Quintile
-- WIMD_2019_Quartile
+- Fdate_Year
 
-#### iv. Encoding "binary" features
-Features that are identified as binary data types only require simple encoding (1 vs 0):
-- Read_Info_Sheet
-- School_Health_Records
-- Other_children_inhouse
-- Easywalk_topark
-- Easywalk_somewhere
-- Garden
-- Keep_in_touch_family_outside_household
-- Keep_in_touch_friends
-- Sleeptime_ytd_minute
-- Awaketime_today_minute
-
-In addition, these following features contain multiple values which can also be split into individual values in binary form:
-- Method_of_keepintouch (Contact_by_phone, Contact_by_visit, Contact_by_social_media, Contact_by_game)
-- Type_of_play_places (Play_in_house, Play_in_garden, Play_in_grass_area, Play_in_bushes, Play_in_woods, Play_in_field, Play_in_street, Play_in_playground, Play_in_bike_or_park, Play_near_water) * Only top 10 categories are used
-- Breakfast_ytd (Bread_Brk, Sugary_Cereal_Brk, Healthy_Cereal_Brk, Fruits_Brk, Yogurt_Brk, Nothing_Brk, Cooked_Breakfast_Brk, Snacks_Brk) * Only top 8 categories are used
-
-#### v. Encoding "ordinal" features with different magnitudes "for certain"
-For features that are identified as ordinal data types with high certainty of categories having different magnitudes can be encoded using one of the following contrast methods:
-- Backward Difference Encoder
-- Polynomial Encoder
-- Sum Encoder
-- Helmert Encoder
-
-These following features will be encoded using contrast methods, since these features clearly show different magnitudes:
-- Fruitveg_ytd
-- Number_people_household
-- Sports_in_week 
-- Internet_in_week
-- Tired_in_week
-- Concentrate_in_week
-- Softdrink_in_week
-- Sugarsnack_in_week
-- Takeawayfood_in_week
-
-#### vi. Encoding features with rare categories
-For features that contain many unique categories, these features may have categories that are considered to be "rare" due to low frequency. To reduce the cardinality of these features, <b>RareLabelEncoder</b> from feature-engine library is used.
-
-#### vii. Encoding "nominal" and "ordinal" features with uncertainty in magnitude difference
-The following list of features are ordinal that may or may not have different magnitudes between values:
-- Doingwell_schoolwork
-- Lots_of_choices_important
-- Lots_of_things_good_at
-- Feel_partof_community
-- Outdoorplay_freq
-- Enoughtime_toplay
-- Play_inall_places
-
-<b>Note that the features listed above are encoded using label encoding (from 0 in order of importance) as intermediate step before further data encoding.</b>
-
+#### vi. Encoding "nominal" features
 The following list of features are identified as nominal:
-- Gender
-- Going_school
-- Homespace_relax
-- Method_of_keepintouch
-- Breakfast_ytd
-- Type_of_play_places
+- NAME
+- ZONE
+- Brand
+- MC
 
 <b>For all the features mentioned in this section, features are encoded using either One Hot encoding (for non-tree based models) or CatBoost encoding (for tree-based models).</b>
 
-#### viii. Encoding "time-related" features
-All time-related features that are derived from Timestamp, Birth_Date, Sleeptime_ytd and Awaketime_today are encoded using either CyclicalFeatures (for non-tree based models) function from feature-engine library or CatBoost encoding (for tree-based models).
+#### vii. Encoding "time-related" features
+All time-related features that are derived from Fdate (month and quarter) are encoded using either CyclicalFeatures (for non-tree based models) function from feature-engine library or CatBoost encoding (for tree-based models).
 
 Note that while One Hot encoding is the most popular approach for categorical data encoding, time-related features are usually cyclical in nature such that performing one hot encoding on time related features does not capture the cyclical component.
 
-#### x. Feature Scaling
-Feature scaling is only essential in some machine learning models like Logistic Regression, Linear SVC and KNN for faster convergence and to prevent misinterpretation of one feature significantly more important than other features. For this project, MinMax scaler is used since this dataset only contains categorical variables.
+#### viii. Feature Scaling
+Feature scaling is only essential in some machine learning models like Huber Regression, Ridge, Lasso, ElasticNet and Linear SVR for faster convergence and to prevent misinterpretation of one feature significantly more important than other features. 
 
-#### xi. Feature Selection
-Given the current dataset has very large number of features, performing feature selection is essential for simplifying the machine learning model, reducing model training time and to reduce risk of model overfitting.
+For this project, the following methods of feature scaling are tested:
+- Standard Scaler
+- MinMax Scaler
+- Robust Scaler
+- Standard Scaler for gaussian features + MinMax Scaler for non-gaussian features
+
+#### x. Feature Selection
+Given the current dataset has very moderately large number of features, performing feature selection is essential for simplifying the machine learning model, reducing model training time and to reduce risk of model overfitting.
 
 For this project, the following methods of feature selection are tested:
 - Mutual Information
 - ANOVA
 - Feature Importance using Extra Trees Classifier
 - Logistic Regression with Lasso Penalty (l1)
-- BorutaShap (Default base learner: Random Forest Classifier)
 - FeatureWiz (SULOV (Searching for Uncorrelated List of Variables) + Recursive Feature Elimination with XGBoost Classifier)
-
-#### xii. Cluster Feature representation
-After selecting the best features from feature selection, an additional step that can be tested involves representing distance between various points and identified cluster point as a feature (cluster_distance) for model training. From the following research paper (https://link.springer.com/content/pdf/10.1007/s10115-021-01572-6.pdf) written by Maciej Piernik and Tadeusz Morzy in 2021, both authors concluded the following points that will be applied to this project:
-
--  Adding cluster-generated features may improve quality of classification models (linear classifiers like Logistic Regression and Linear SVC), with extra caution required for non-linear classifiers like K Neighbors Classifier and random forest approaches.
-
-- Encoding clusters as features based on distances between points and cluster representatives with feature scaling is significantly better than solely relying on cluster membership with One Hot encoding. 
-
-- Adding generated cluster features to existing ones is safer option than replacing them altogether, which may yield model improvements without degrading model quality
-
-- No single clustering approach (K-means vs Hierarchical vs DBScan vs Affinity Propagation) provide significantly better results in model performance. Thus, affinity propagation method is used for this project, which automatically determines the number of clusters to use. However, "damping" parameter requires hyperparameter tuning for using Affinity Propagation method.
 
 ## Legality
 ---
