@@ -108,33 +108,59 @@ For model evaluation on regression, the following metrics are used in this proje
 
 All plots generated from this section can be found in Intermediate_Train_Results/EDA folder.
 
-#### i. Basic metadata of dataset
-On initial inspection, the current dataset used in this project has a total of 71 features. Both "_id" and "ID.1 features represent unique identifier of a given record and the remaining features have  mix of "float", "int" and "object" data types. Upon closer inspection on data dictionary, there are several date-time related features where further information can be extracted and remaining features are considered as categorical variables.
+##### i. Basic metadata of dataset
+On initial inspection, the current dataset used in this project has a total of 12 relevant features with mix of "float" and "object" data types. After initial data cleaning (described in Initial Data Cleaning and Feature Engineering section), there are no missing values in this dataset.
 
-Given that there is no target variable, this project requires creating target variable manually (Wellbeing_Category_WMS - mainly based on variables related to Me and My Feelings Questionnaire. More details can be found in the coding file labeled "train preprocessing.py")
+##### ii. Target variable distribution
+![SP_Distribution](https://user-images.githubusercontent.com/34255556/197938974-9bfebcd1-bec1-48fe-85fc-ff41215f55d3.png)
 
-![Target_Class_Distribution](https://user-images.githubusercontent.com/34255556/196934993-fc9bbe23-81c3-459c-8263-2ff26a51b31f.png)
+From the diagram above, the target variable (SP - Selling Price) is very heavily right skewed.
 
-From the diagram above, there is a very clear indication of target imbalance between all 4 classes for multiclass classification. This indicates that target imbalancing needs to be addressed during model training.
-
-![Proportion of null values](https://user-images.githubusercontent.com/34255556/196935092-1ba7c4e8-740f-49e7-bfc3-2247ee977b32.png)
-
-From the diagram above, most features with missing values identified have missing proportions approximately less than 1%, except for "Method_of_keepintouch" feature with approximately 3% containing missing values.
-
-Furthermore, the following sets of plots are created for every feature of the dataset that contains less than 100 unique values:
+##### iii. Categorical Features
+The following sets of outputs are created for every categorical feature of the dataset that contains less than 100 unique values:
 1. Count plot (Number of unique values per category)
-2. Count plot (Number of unique values per category by target class)
-3. Bar plot (Number of missing values by target class) - For features with missing values
+2. Box plot (Distribution of target variable per category)
+3. CSV file (Number of unique values per category)
 
-For features with more than 100 unique values, a CSV file is generated which represents the distribution of categories.
-In addition, it was observed that features like "Breakfast_ytd", 'Method_of_keepintouch' and 'Type_of_play_places' can contain multiple values (seperated by ";" symbol). Those features are split into its individual categories first before generating a CSV file for representing distribution of categories.
+For features with more than 100 unique values, only a CSV file is generated which represents the distribution of categories.
 
-The set of figures below shows an example of the following plots mentioned above for Method_of_keepintouch feature:
+The set of figures below shows an example of the following plots mentioned above for Brand feature:
 
 <p float="left">
-<img src="https://user-images.githubusercontent.com/34255556/196936871-869fbabc-b1a1-49e2-93f4-987097581926.png">
-<img src="https://user-images.githubusercontent.com/34255556/196936977-e1f2e831-a255-4650-8c5d-4b27cfc560ef.png">
-<img src="https://user-images.githubusercontent.com/34255556/196937003-dc7e5cd2-7464-40a7-bc77-2dc4d8bd3ca2.png" width="500">
+<img src="https://user-images.githubusercontent.com/34255556/197939929-6adc3cd0-5003-41c9-8938-de42926dd82e.png">
+<img src="https://user-images.githubusercontent.com/34255556/197939948-94f680b4-f7f0-4d54-8614-f6a75fbcce10.png">
+</p>
+
+##### iv. Correlation analysis
+From performing spearman correlation analysis, there are 4 pairs of features having high spearman correlation (with absolute value of greater than 0.8) with one another. The scatterplot diagram below shows an example of two features having very high positive spearman correlation with one another:
+
+<img src="https://user-images.githubusercontent.com/34255556/197941378-4e7505d2-a763-4142-a12d-804866251b63.png" width="500">
+
+Although there are pairs of features having high correlation with one another, this doesn't mean that those features with high correlation with other features should be removed from the dataset, which may result in sub-optimal model performance along with feature selection. More scatterplot diagrams can be found within EDA folder, which shows other pairs of features that have high spearman correlation.
+
+The diagram below shows correlation heatmap for all features (both numerical and categorical):
+
+<img src="https://user-images.githubusercontent.com/34255556/197941466-de186278-1a95-4308-8906-289a537ef70a.png" width="500">
+
+Note that correlation is derived for the following types of relationships between variables using "associations" function under "dython" library:
+- Between two numerical columns: Spearman
+- Between two categorical colummns: Cramer
+- Between numerical and categorical column: Correlation ratio
+
+##### v. Numerical Features
+The following sets of plots are created for every numerical feature of the dataset:
+1. Box plot
+2. Kernel density estimation plot
+3. Scatter plot (Relationship between feature and target variable - SP)
+
+Both box plots and kernel density estimation plot for every feature helps to identify distribution of data (gaussian vs non-gaussian) and identifying potential outliers.
+
+The set of figures below shows an example of the following plots mentioned above for MRP:
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/34255556/197941052-9b57e29a-ca92-47ab-a7bb-9fd12f79f01a.png" width="400">
+<img src="https://user-images.githubusercontent.com/34255556/197941071-68d1e80f-bd93-43da-aca1-4c048636542a.png" width="400">
+<img src="https://user-images.githubusercontent.com/34255556/197941090-075db93b-7dcf-4896-921d-19c54a525413.png" width="400">
 </p>
 
 ---
@@ -262,7 +288,7 @@ Note that an alternative version of this methodology, known as CRISP-ML(Q) (Cros
 ---
 The following diagram below summarizes the structure for this project:
 
-![image](https://user-images.githubusercontent.com/34255556/197318105-4d4cd686-f6e5-43ed-8ad4-1cff1bbc2adf.png)
+![image](https://user-images.githubusercontent.com/34255556/197938539-1221c1a6-692f-4124-95c1-a3b7b1342c84.png)
 
 Note that all steps mentioned above have been logged accordingly for future reference and easy maintenance, which are stored in <b>Training_Logs</b> folder.
 
