@@ -248,7 +248,7 @@ class train_Preprocessor:
         plt.figure(figsize=(12,8))
         sns.heatmap(
             correlation, annot=True, mask = np.triu(np.ones_like(correlation, dtype=bool)),fmt='.2f',annot_kws={'fontsize':12})
-        plt.title('Spearman correlation heatmap',size=16)
+        plt.title('Correlation heatmap',size=16)
         plt.savefig(
             self.result_dir+f'EDA/Correlation_Heatmap.png', bbox_inches='tight', pad_inches=0.2)
         plt.clf()
