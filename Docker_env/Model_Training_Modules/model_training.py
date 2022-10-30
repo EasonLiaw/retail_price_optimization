@@ -1,6 +1,6 @@
 '''
 Author: Liaw Yi Xian
-Last Modified: 25th October 2022
+Last Modified: 30th October 2022
 '''
 
 import warnings
@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as st
-import os
+import os, sys
 import optuna
 import joblib
 import time
@@ -38,10 +38,9 @@ from sklearn.svm import LinearSVR
 from sklearn.base import clone
 from sklearn.metrics import mean_squared_error, mean_absolute_error, median_absolute_error, make_scorer
 from Application_Logger.logger import App_Logger
-
+from Application_Logger.exception import CustomException
 
 random_state=120
-
 
 class model_trainer:
 
@@ -590,10 +589,8 @@ class model_trainer:
                 self.folderpath + obj.__name__ + f"/Hyperparameter_Tuning_Results_{obj.__name__}_Fold_{fold}.csv",index=False)
             del study
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f'Performing optuna hyperparameter tuning for {obj.__name__} model failed with the following error: {e}')
-            raise Exception(
-                f'Performing optuna hyperparameter tuning for {obj.__name__} model failed with the following error: {e}')
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         return trial
 
 
@@ -602,6 +599,7 @@ class model_trainer:
             Method Name: residual_plot
             Description: This method plots residuals from the model and saves plot within the given model class folder.
             Output: None
+            On Failure: Logging error and raise exception
 
             Parameters:
             - reg: Model object
@@ -610,15 +608,19 @@ class model_trainer:
             - actual_value: Actual target values from dataset
             - pred_value: Predicted target values
         '''
-        plt.style.use('seaborn-whitegrid')
-        plt.scatter(x = pred_value, y= np.subtract(pred_value,actual_value))
-        plt.axhline(y=0, color='black')
-        plt.title(f'Residual plot for {type(reg).__name__} {figtitle}')
-        plt.ylabel('Residuals')
-        plt.xlabel('Predicted Value')
-        plt.savefig(
-            self.folderpath+type(reg).__name__+f'/Residual_Plot_{type(reg).__name__}_{plotname}.png',bbox_inches='tight')
-        plt.clf()
+        try:
+            plt.style.use('seaborn-whitegrid')
+            plt.scatter(x = pred_value, y= np.subtract(pred_value,actual_value))
+            plt.axhline(y=0, color='black')
+            plt.title(f'Residual plot for {type(reg).__name__} {figtitle}')
+            plt.ylabel('Residuals')
+            plt.xlabel('Predicted Value')
+            plt.savefig(
+                self.folderpath+type(reg).__name__+f'/Residual_Plot_{type(reg).__name__}_{plotname}.png',bbox_inches='tight')
+            plt.clf()
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
 
 
     def leverage_plot(self, reg, input_data, output_data):
@@ -626,16 +628,21 @@ class model_trainer:
             Method Name: leverage_plot
             Description: This method plots leverage plot of a given model and saves plot within the given model class folder.
             Output: None
+            On Failure: Logging error and raise exception
 
             Parameters:
             - reg: Model object
             - input_data: Features from dataset
             - output_data: Target column from dataset
         '''
-        visualizer = CooksDistance()
-        visualizer.fit(input_data, output_data)
-        visualizer.show(
-            outpath=self.folderpath+type(reg).__name__+'/Leverage_Plot.png', clear_figure=True)
+        try:
+            visualizer = CooksDistance()
+            visualizer.fit(input_data, output_data)
+            visualizer.show(
+                outpath=self.folderpath+type(reg).__name__+'/Leverage_Plot.png', clear_figure=True)
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
 
 
     def learning_curve_plot(self, reg, input_data, output_data):
@@ -643,29 +650,34 @@ class model_trainer:
             Method Name: learning_curve_plot
             Description: This method plots learning curve of 5 fold cross validation and saves plot within the given model class folder.
             Output: None
+            On Failure: Logging error and raise exception
 
             Parameters:
             - clf: Model object
             - input_data: Features from dataset
             - output_data: Target column from dataset
         '''
-        train_sizes, train_scores, validation_scores = learning_curve(
-            estimator = reg, X = input_data, y = output_data, cv= KFold(n_splits=5, shuffle=True, random_state=random_state), scoring='neg_root_mean_squared_error', train_sizes=np.linspace(0.3, 1.0, 10))
-        train_scores = np.abs(train_scores)
-        validation_scores = np.abs(validation_scores)
-        plt.style.use('seaborn-whitegrid')
-        plt.grid(True)
-        plt.fill_between(train_sizes, train_scores.mean(axis = 1) - train_scores.std(axis = 1), train_scores.mean(axis = 1) + train_scores.std(axis = 1), alpha=0.25, color='blue')
-        plt.plot(train_sizes, train_scores.mean(axis = 1), label = 'Training Score', marker='.',markersize=14)
-        plt.fill_between(train_sizes, validation_scores.mean(axis = 1) - validation_scores.std(axis = 1), validation_scores.mean(axis = 1) + validation_scores.std(axis = 1), alpha=0.25, color='green')
-        plt.plot(train_sizes, validation_scores.mean(axis = 1), label = 'Cross Validation Score', marker='.',markersize=14)
-        plt.ylabel('Score')
-        plt.xlabel('Training instances')
-        plt.title(f'Learning Curve for {type(reg).__name__}')
-        plt.legend(frameon=True, loc='best')
-        plt.savefig(
-            self.folderpath+type(reg).__name__+f'/LearningCurve_{type(reg).__name__}.png',bbox_inches='tight')
-        plt.clf()
+        try:
+            train_sizes, train_scores, validation_scores = learning_curve(
+                estimator = reg, X = input_data, y = output_data, cv= KFold(n_splits=5, shuffle=True, random_state=random_state), scoring='neg_root_mean_squared_error', train_sizes=np.linspace(0.3, 1.0, 10))
+            train_scores = np.abs(train_scores)
+            validation_scores = np.abs(validation_scores)
+            plt.style.use('seaborn-whitegrid')
+            plt.grid(True)
+            plt.fill_between(train_sizes, train_scores.mean(axis = 1) - train_scores.std(axis = 1), train_scores.mean(axis = 1) + train_scores.std(axis = 1), alpha=0.25, color='blue')
+            plt.plot(train_sizes, train_scores.mean(axis = 1), label = 'Training Score', marker='.',markersize=14)
+            plt.fill_between(train_sizes, validation_scores.mean(axis = 1) - validation_scores.std(axis = 1), validation_scores.mean(axis = 1) + validation_scores.std(axis = 1), alpha=0.25, color='green')
+            plt.plot(train_sizes, validation_scores.mean(axis = 1), label = 'Cross Validation Score', marker='.',markersize=14)
+            plt.ylabel('Score')
+            plt.xlabel('Training instances')
+            plt.title(f'Learning Curve for {type(reg).__name__}')
+            plt.legend(frameon=True, loc='best')
+            plt.savefig(
+                self.folderpath+type(reg).__name__+f'/LearningCurve_{type(reg).__name__}.png',bbox_inches='tight')
+            plt.clf()
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
 
 
     def shap_plot(self, reg, input_data):
@@ -673,34 +685,39 @@ class model_trainer:
             Method Name: shap_plot
             Description: This method plots feature importance and its summary using shap values and saves plot within the given model class folder. Note that this function will not work specifically for XGBoost models that use 'dart' booster.
             Output: None
+            On Failure: Logging error and raise exception
 
             Parameters:
             - reg: Model object
             - input_data: Features from dataset
         '''
-        if type(reg).__name__ in ['HuberRegressor','LinearSVR', 'Ridge', 'Lasso', 'ElasticNet']:
-            explainer = shap.LinearExplainer(reg, input_data)
-            explainer_obj = explainer(input_data)
-            shap_values = explainer.shap_values(input_data)
-        else:
-            if ('dart' in reg.get_params().values()) and (type(reg).__name__ == 'XGBRegressor'):
-                return
-            explainer = shap.TreeExplainer(reg)
-            explainer_obj = explainer(input_data)
-            shap_values = explainer.shap_values(input_data)
-        plt.figure()
-        shap.summary_plot(
-            shap_values, input_data, plot_type="bar", show=False, max_display=40)
-        plt.title(f'Shap Feature Importances for {type(reg).__name__}')
-        plt.savefig(
-            self.folderpath+type(reg).__name__+f'/Shap_Feature_Importances_{type(reg).__name__}.png',bbox_inches='tight')
-        plt.clf()
-        plt.figure()
-        shap.plots.beeswarm(explainer_obj, show=False, max_display=40)
-        plt.title(f'Shap Summary Plot for {type(reg).__name__}')
-        plt.savefig(
-            self.folderpath+type(reg).__name__+f'/Shap_Summary_Plot_{type(reg).__name__}.png',bbox_inches='tight')
-        plt.clf()
+        try:
+            if type(reg).__name__ in ['HuberRegressor','LinearSVR', 'Ridge', 'Lasso', 'ElasticNet']:
+                explainer = shap.LinearExplainer(reg, input_data)
+                explainer_obj = explainer(input_data)
+                shap_values = explainer.shap_values(input_data)
+            else:
+                if ('dart' in reg.get_params().values()) and (type(reg).__name__ == 'XGBRegressor'):
+                    return
+                explainer = shap.TreeExplainer(reg)
+                explainer_obj = explainer(input_data)
+                shap_values = explainer.shap_values(input_data)
+            plt.figure()
+            shap.summary_plot(
+                shap_values, input_data, plot_type="bar", show=False, max_display=40)
+            plt.title(f'Shap Feature Importances for {type(reg).__name__}')
+            plt.savefig(
+                self.folderpath+type(reg).__name__+f'/Shap_Feature_Importances_{type(reg).__name__}.png',bbox_inches='tight')
+            plt.clf()
+            plt.figure()
+            shap.plots.beeswarm(explainer_obj, show=False, max_display=40)
+            plt.title(f'Shap Summary Plot for {type(reg).__name__}')
+            plt.savefig(
+                self.folderpath+type(reg).__name__+f'/Shap_Summary_Plot_{type(reg).__name__}.png',bbox_inches='tight')
+            plt.clf()
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
 
 
     def model_training(
@@ -725,28 +742,32 @@ class model_trainer:
             - n_trials: Number of trials for Optuna hyperparameter tuning
             - fold_num: Indication of fold number for model training (can be integer or string "overall")
         '''
-        func = lambda trial: obj(trial, input_data, output_data)
-        func.__name__ = type(reg).__name__
-        self.log_writer.log(
-            self.file_object, f"Start hyperparameter tuning for {type(reg).__name__} for fold {fold_num}")
-        best_trial = self.optuna_optimizer(func, n_trials, fold_num)
-        self.log_writer.log(
-            self.file_object, f"Hyperparameter tuning for {type(reg).__name__} completed for fold {fold_num}")
-        self.log_writer.log(
-            self.file_object, f"Start using best pipeline for {type(reg).__name__} for transforming training and validation data for fold {fold_num}")
-        best_pipeline = best_trial.user_attrs['Pipeline']
-        input_data_transformed = best_pipeline.fit_transform(
-            input_data, output_data)
-        self.log_writer.log(
-            self.file_object, f"Finish using best pipeline for {type(reg).__name__} for transforming training and validation data for fold {fold_num}")
-        for parameter in ['scaling','feature_selection','number_features','drop_correlated','outlier_indicator']:
-            if parameter in best_trial.params.keys():
-                best_trial.params.pop(parameter)
-        self.log_writer.log(
-            self.file_object, f"Finish hyperparameter tuning for {type(reg).__name__} for fold {fold_num}")
-        model_copy = clone(reg)
-        model_copy = model_copy.set_params(**best_trial.params)
-        model_copy.fit(input_data_transformed, output_data)
+        try:
+            func = lambda trial: obj(trial, input_data, output_data)
+            func.__name__ = type(reg).__name__
+            self.log_writer.log(
+                self.file_object, f"Start hyperparameter tuning for {type(reg).__name__} for fold {fold_num}")
+            best_trial = self.optuna_optimizer(func, n_trials, fold_num)
+            self.log_writer.log(
+                self.file_object, f"Hyperparameter tuning for {type(reg).__name__} completed for fold {fold_num}")
+            self.log_writer.log(
+                self.file_object, f"Start using best pipeline for {type(reg).__name__} for transforming training and validation data for fold {fold_num}")
+            best_pipeline = best_trial.user_attrs['Pipeline']
+            input_data_transformed = best_pipeline.fit_transform(
+                input_data, output_data)
+            self.log_writer.log(
+                self.file_object, f"Finish using best pipeline for {type(reg).__name__} for transforming training and validation data for fold {fold_num}")
+            for parameter in ['scaling','feature_selection','number_features','drop_correlated','outlier_indicator']:
+                if parameter in best_trial.params.keys():
+                    best_trial.params.pop(parameter)
+            self.log_writer.log(
+                self.file_object, f"Finish hyperparameter tuning for {type(reg).__name__} for fold {fold_num}")
+            model_copy = clone(reg)
+            model_copy = model_copy.set_params(**best_trial.params)
+            model_copy.fit(input_data_transformed, output_data)
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         return model_copy, best_trial, input_data_transformed, best_pipeline
 
 
@@ -815,10 +836,8 @@ class model_trainer:
             self.log_writer.log(
                 self.file_object, f"Average optimized results for {type(reg).__name__} model saved")                
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f'Hyperparameter tuning on {type(reg).__name__} model failed with the following error: {e}')
-            raise Exception(
-                f'Hyperparameter tuning on {type(reg).__name__} model failed with the following error: {e}')
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
 
 
     def final_overall_model(self, obj, reg, input_data, output_data, n_trials):
@@ -833,6 +852,7 @@ class model_trainer:
             5. Shap Summary Plot (beeswarm plot image)
             
             Output: None
+            On Failure: Logging error and raise exception
 
             Parameters:
             - obj: Optuna objective function
@@ -843,17 +863,22 @@ class model_trainer:
         '''
         self.log_writer.log(
             self.file_object, f"Start final model training on all data for {type(reg).__name__}")
-        overall_model, best_trial, input_data_transformed, best_pipeline = self.model_training(reg, obj, input_data, output_data, n_trials, 'overall')
-        joblib.dump(best_pipeline,'Saved_Models/Preprocessing_Pipeline.pkl')
-        joblib.dump(overall_model,'Saved_Models/FinalModel.pkl')
-        actual_values = output_data
-        pred_values = overall_model.predict(input_data_transformed)
-        self.residual_plot(
-            reg, '(Final Model)', 'final_model', actual_values, pred_values)
-        self.leverage_plot(overall_model, input_data_transformed, output_data)
-        self.learning_curve_plot(
-            overall_model, input_data_transformed, output_data)
-        self.shap_plot(overall_model, input_data_transformed)
+        try:
+            overall_model, best_trial, input_data_transformed, best_pipeline = self.model_training(
+                reg, obj, input_data, output_data, n_trials, 'overall')
+            joblib.dump(best_pipeline,'Saved_Models/Preprocessing_Pipeline.pkl')
+            joblib.dump(overall_model,'Saved_Models/FinalModel.pkl')
+            actual_values = output_data
+            pred_values = overall_model.predict(input_data_transformed)
+            self.residual_plot(
+                reg, '(Final Model)', 'final_model', actual_values, pred_values)
+            self.leverage_plot(overall_model, input_data_transformed, output_data)
+            self.learning_curve_plot(
+                overall_model, input_data_transformed, output_data)
+            self.shap_plot(overall_model, input_data_transformed)
+        except Exception as e:
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         self.log_writer.log(
             self.file_object, f"Finish final model training on all data for {type(reg).__name__}")
         

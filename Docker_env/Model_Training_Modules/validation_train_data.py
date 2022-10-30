@@ -1,13 +1,14 @@
 '''
 Author: Liaw Yi Xian
-Last Modified: 25th October 2022
+Last Modified: 30th October 2022
 '''
 
 import json
 import pandas as pd
 import psycopg2
 from Application_Logger.logger import App_Logger
-import os
+from Application_Logger.exception import CustomException
+import os, sys
 import shutil
 import DBConnectionSetup as login
 
@@ -76,24 +77,18 @@ class rawtraindatavalidation:
                         self.log_writer.log(
                             self.file_object, f"Column {name} already exists in {self.tablename} table")
                 else:
-                    try:
-                        mycursor.execute(
-                            f"CREATE TABLE {self.tablename} (\"{name}\" {type})")
-                        conn.commit()
-                        self.log_writer.log(
-                            self.file_object, f"{self.tablename} table created with column {name}")
-                    except Exception as e:
-                        self.log_writer.log(
-                            self.file_object, f"SQL server has error of creating new table {self.tablename} with the following error: {e}")
+                    mycursor.execute(
+                        f"CREATE TABLE {self.tablename} (\"{name}\" {type})")
+                    conn.commit()
+                    self.log_writer.log(
+                        self.file_object, f"{self.tablename} table created with column {name}")
         except ConnectionError:
             self.log_writer.log(
                 self.file_object, "Error connecting to SQL database")
             raise Exception("Error connecting to SQL database")
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"The following error occured when connecting to SQL database: {e}")
-            raise Exception(
-                f"The following error occured when connecting to SQL database: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         conn.close()
         self.log_writer.log(
             self.file_object, f"Finish creating new table({self.tablename}) in SQL database ({self.dbname})")
@@ -133,10 +128,8 @@ class rawtraindatavalidation:
                 self.file_object, "Error connecting to SQL database")
             raise Exception("Error connecting to SQL database")
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"The following error occured when connecting to SQL database: {e}")
-            raise Exception(
-                f"The following error occured when connecting to SQL database: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         conn.close()
         self.log_writer.log(
             self.file_object, "Finish inserting new good training data into SQL database")
@@ -162,10 +155,8 @@ class rawtraindatavalidation:
                 self.file_object, "Error connecting to PostgreSQL database")
             raise Exception("Error connecting to PostgreSQL database")
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"The following error occured when connecting to PostgreSQL database: {e}")
-            raise Exception(
-                f"The following error occured when connecting to PostgreSQL database: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         conn.close()
         self.log_writer.log(
             self.file_object, "Finish writing compiled good training data into a new CSV file")
@@ -189,9 +180,8 @@ class rawtraindatavalidation:
                     self.file_object, f"Folder {folder} has been initialized")
             except Exception as e:
                 self.log_writer.log(
-                    self.file_object, f"Folder {folder} could not be initialized with the following error: {e}")
-                raise Exception(
-                    f"Folder {folder} could not be initialized with the following error: {e}")
+                    self.file_object, str(CustomException(e,sys)))
+                raise CustomException(e,sys)
         self.log_writer.log(
             self.file_object, "Finish initializing folder structure")
 
@@ -208,10 +198,8 @@ class rawtraindatavalidation:
             with open(self.schemapath, 'r') as f:
                 schema = json.load(f)
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"Training schema fail to load with the following error: {e}")
-            raise Exception(
-                f"Training schema fail to load with the following error: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         self.log_writer.log(self.file_object, "Finish loading train schema")
         return schema
     
@@ -232,10 +220,8 @@ class rawtraindatavalidation:
                 data[column] = data[column].map(lambda x: x.replace("'","''"))
                 data[column] = data[column].map(lambda x: f'\'{x}\'')
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"Handling single quotes on characters fail with the following error: {e}")
-            raise Exception(
-                f"Handling single quotes on characters fail with the following error: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         self.log_writer.log(
             self.file_object, "Finish handling single quotes on characters")
         return data
@@ -256,10 +242,8 @@ class rawtraindatavalidation:
         try:
             data = data.fillna('null')
         except Exception as e:
-            self.log_writer.log(
-                self.file_object, f"Replacing missing values with null keyword fail with the following error: {e}")
-            raise Exception(
-                f"Replacing missing values with null keyword fail with the following error: {e}")
+            self.log_writer.log(self.file_object, str(CustomException(e,sys)))
+            raise CustomException(e,sys)
         self.log_writer.log(
             self.file_object, "Finish replacing missing values with null keyword")
         return data
